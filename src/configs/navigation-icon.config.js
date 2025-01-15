@@ -1,0 +1,48 @@
+import React from 'react'
+import {
+    HiOutlineChartSquareBar,
+    HiOutlineUserGroup,
+    HiOutlineTrendingUp,
+    HiOutlineUserCircle,
+    HiOutlineBookOpen,
+    HiOutlineCurrencyDollar,
+    HiOutlineShieldCheck,
+    HiOutlineColorSwatch,
+    HiOutlineChatAlt,
+    HiOutlineDesktopComputer,
+    HiOutlinePaperAirplane,
+    HiOutlineChartPie,
+    HiOutlineUserAdd,
+    HiOutlineKey,
+    HiOutlineBan,
+    HiOutlineHand,
+    HiOutlineDocumentText,
+    HiOutlineTemplate,
+    HiOutlineLockClosed,
+    HiOutlineDocumentDuplicate,
+    HiOutlineViewGridAdd,
+} from 'react-icons/hi'
+
+const navigationIcon = {
+    apps: <HiOutlineViewGridAdd />,
+    project: <HiOutlineChartSquareBar />,
+    crm: <HiOutlineUserGroup />,
+    sales: <HiOutlineTrendingUp />,
+    crypto: <HiOutlineCurrencyDollar />,
+    knowledgeBase: <HiOutlineBookOpen />,
+    account: <HiOutlineUserCircle />,
+    uiComponents: <HiOutlineTemplate />,
+    common: <HiOutlineColorSwatch />,
+    feedback: <HiOutlineChatAlt />,
+    dataDisplay: <HiOutlineDesktopComputer />,
+    forms: <HiOutlineDocumentText />,
+    navigation: <HiOutlinePaperAirplane />,
+    graph: <HiOutlineChartPie />,
+    authentication: <HiOutlineLockClosed />,
+    signIn: <HiOutlineShieldCheck />,
+    signUp: <HiOutlineUserAdd />,
+    forgotPassword: <HiOutlineLockClosed />,
+    resetPassword: <HiOutlineKey />,
+}
+
+export default navigationIcon
