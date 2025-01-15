@@ -8,6 +8,8 @@ import { update } from 'lodash'
 
 const Profile = lazy(() => import('./components/Profile'))
 const Password = lazy(() => import('./components/Password'))
+const Email = lazy(() => import('./components/Email'))
+
 const NotificationSetting = lazy(() =>
     import('./components/NotificationSetting')
 )
@@ -19,7 +21,7 @@ const { TabNav, TabList } = Tabs
 const settingsMenu = {
     profile: { label: 'Profile', path: 'profile' },
     password: { label: 'Password', path: 'password' },
-    // notification: { label: 'Notification', path: 'notification' },
+    email: { label: 'Email', path: 'email' },
     // integration: { label: 'Integration', path: 'integration' },
     // billing: { label: 'Billing', path: 'billing' },
 }
@@ -104,6 +106,9 @@ const Settings = () => {
                         )}
                         {currentTab === 'password' && (
                             <Password data={data} />
+                        )}
+                        {currentTab === 'email' && (
+                            <Email data={data} />
                         )}
                         {/* {currentTab === 'notification' && (
                             <NotificationSetting data={data.notification} />

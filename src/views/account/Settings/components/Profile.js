@@ -35,6 +35,8 @@
             .required('Username Required'),
         email: Yup.string().email('Invalid email').required('Email Required'),
         full_name: Yup.string().required('Full name required'),
+        phone_no:Yup.number().nullable()
+
         // avatar: Yup.string(),
         // lang: Yup.string(),
         // timeZone: Yup.string(),
@@ -135,7 +137,7 @@
                             <FormContainer>
                                 <FormDesription
                                     title="General"
-                                    desc="Basic info, like your name and address that will be displayed in public"
+                                    desc="Basic info, like your full name and contact number that will be displayed in public"
                                 />
                                 <FormRow
                                     name="full_name"
@@ -174,6 +176,24 @@
                                     />
                                 </FormRow>
                                 <FormRow
+                                    name="phone_no"
+                                    label="Phone Number"
+                                    {...validatorProps}
+                                >
+                                    <Field
+                                        type="text"
+                                        autoComplete="off"
+                                        name="phone_no"
+                                        value={values.phone_no}
+                                        onChange={handleFieldChange}
+                                        placeholder={data?.phone_no}
+                                        component={Input}
+                                        prefix={
+                                            <HiOutlineUserCircle className="text-xl" />
+                                        }
+                                    />
+                                </FormRow>
+                                <FormRow
                                     name="email"
                                     label="Email"
                                     {...validatorProps}
@@ -186,6 +206,7 @@
                                         onChange={handleFieldChange}
                                         placeholder={data?.email}
                                         component={Input}
+                                        disabled={true}
                                         prefix={
                                             <HiOutlineMail className="text-xl" />
                                         }

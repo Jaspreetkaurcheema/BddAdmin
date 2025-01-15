@@ -473,6 +473,16 @@ const appsRoute = [
         },
     },
     {
+        key: 'appsSetting.email',
+        path: `${APP_PREFIX_PATH}/account/settings/email`,
+        component: React.lazy(() => import('views/account/Settings')),
+        authority: [ADMIN],
+        meta: {
+            header: 'Settings',
+            headerContainer: true,
+        },
+    },
+    {
         key: 'appsAccount.invoice',
         path: `${APP_PREFIX_PATH}/account/invoice/:id`,
         component: React.lazy(() => import('views/account/Invoice')),

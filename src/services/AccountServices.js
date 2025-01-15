@@ -65,4 +65,10 @@ export async function apiPutAdminpasswordData(data) {
         data,
     })
 }
-
+export async function apiPutAdminEmailData(data) {
+    return ApiService.fetchData({
+        url: `/Admin/email`,
+        method: 'put',
+        data,
+    })
+}
