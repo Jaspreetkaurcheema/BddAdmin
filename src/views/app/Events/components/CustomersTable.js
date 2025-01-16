@@ -206,8 +206,8 @@ const Customers = () => {
         useEffect(() => {
             const fetchData = async () => {
                 try {
-                    const response = await apiGetProgramed();
-                    setPools(response.data.data);
+                    // const response = await apiGetProgramed();
+                    // setPools(response.data.data);
                 } catch (error) {
                     console.error('Error fetching pools:', error);
                     // Handle error

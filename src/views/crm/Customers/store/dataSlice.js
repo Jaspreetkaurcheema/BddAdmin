@@ -31,13 +31,14 @@ export const putCustomer = createAsyncThunk(
 
 export const initialTableData = {
     pageNumber: 1,
-    pageSize: 25,
+    pageSize: 10,
     search: '',
-    userType:1,
+    filterType:0
+  
 }
 
 export const initialFilterData = {
-    filterType:2,
+    filterType:0,
 }
 
 const dataSlice = createSlice({
@@ -62,13 +63,13 @@ const dataSlice = createSlice({
     },
     extraReducers: {
         [getCustomers.fulfilled]: (state, action) => {
-            console.log(state,action,'sytytyhjjk')
+            console.log(state.loading,'sytytyhjjk')
             state.customerList = action.payload.data
             state.tableData.total = action.payload.total
             state.loading = false
         },
         [getCustomers.pending]: (state) => {
-            state.loading = true
+              state.loading = true
         },
         [getCustomerStatistic.pending]: (state) => {
             state.statisticLoading = true

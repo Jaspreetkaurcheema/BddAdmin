@@ -15,14 +15,13 @@ const BaseService = axios.create({
 
 BaseService.interceptors.request.use(
     (config) => {
-        console.log(config,"config")
         const rawPersistData = localStorage.getItem(PERSIST_STORE_NAME)
         const persistData = deepParseJson(rawPersistData)
 
-        console.log(persistData,"rawPersistData")
+       
 
         let accessToken = persistData.auth.session.token
-console.log(accessToken,'accessTokenaccessToken')
+
 
         if (!accessToken) {
             const { auth } = store.getState()

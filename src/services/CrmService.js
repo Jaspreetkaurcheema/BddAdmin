@@ -18,7 +18,7 @@ export async function apiGetCrmCalendar() {
 export async function apiGetCrmCustomers(data) {
     console.log(data,'datdatdata')
     return ApiService.fetchData({
-        url: '/user/list',
+        url: '/Admin/users',
         method: 'post',
         data,
     })

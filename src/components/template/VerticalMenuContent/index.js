@@ -16,7 +16,7 @@ import { useTranslation } from 'react-i18next'
 const { MenuGroup } = Menu
 
 const VerticalMenuContent = (props) => {
-    console.log(props.navigationTree,"navigationTreenavigationTree")
+    // console.log(props.navigationTree,"navigationTreenavigationTree")
     const {
         navMode = themeConfig.navMode,
         collapsed,
@@ -131,7 +131,7 @@ const VerticalMenuContent = (props) => {
                 />
             )
         }
-        console.log(nav.subMenu, 'vvvvv')
+        // console.log(nav.subMenu, 'vvvvv')
 
         nav.subMenu.map(item => { console.log(item.subMenu, 'subMenu') })
         if (nav.type === NAV_ITEM_TYPE_TITLE) {

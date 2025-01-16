@@ -8,9 +8,9 @@ import { HiCheck } from 'react-icons/hi'
 const { Control } = components
 
 const options = [
-    { value: 1, label: 'All', color: 'bg-gray-500' },
-    { value: 2, label: 'Active', color: 'bg-emerald-500' },
-    { value: 3, label: 'Deleted', color: 'bg-red-500' },
+    { value: 0, label: 'All', color: 'bg-gray-500' },
+    { value: 1, label: 'Active', color: 'bg-emerald-500' },
+    { value: 2, label: 'Inactive', color: 'bg-red-500' },
 ]
 
 
@@ -55,12 +55,12 @@ const CustomerTableFilter = ({ setSelectedCard, selected }) => {
         (state) => state.crmUsers.data.filterData
     )
     useEffect(() => {
-        dispatch(setFilterData({ filterType: 2 }))
+        dispatch(setFilterData({ filterType: 0 }))
     }, [])
     const onStatusFilterChange = (selected) => {
         setSelectedCard({ data, selected })
         dispatch(setFilterData({ filterType: selected.value }))
-        dispatch(setTableData({ pageNumber: 1, pageSize: 25, search: '', userType: 1 }))
+        // dispatch(setTableData({ pageNumber: 1, pageSize: 10, search: '', userType: 1 }))
     }
 
     return (           

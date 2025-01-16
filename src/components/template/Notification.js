@@ -116,9 +116,9 @@ export const Notification = ({ className }) => {
         }
     }, [setUnreadNotification])
 
-    useEffect(() => {
-        getNotificationCount()
-    }, [getNotificationCount])
+    // useEffect(() => {
+    //     getNotificationCount()
+    // }, [getNotificationCount])
 
     const onNotificationOpen = useCallback(async () => {
         if (notificationList.length === 0) {

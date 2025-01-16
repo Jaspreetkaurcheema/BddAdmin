@@ -29,14 +29,14 @@ const CustomersTableTools = ({ setSelectedCard, selected }) => {
 
     const fetchData = (data) => {
         dispatch(setTableData(data))
-        dispatch(getCustomers(data))
+        // dispatch(getCustomers(data))
     }
 
     const onClearAll = () => {
         const newTableData = cloneDeep(tableData)
         newTableData.search = ''
         inputRef.current.value = ''
-        dispatch(setFilterData({ filterType: 2 }))
+        dispatch(setFilterData({ filterType: 0 }))
         fetchData(newTableData)
     }
 

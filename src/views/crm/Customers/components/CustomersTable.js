@@ -12,8 +12,9 @@ import CustomerEditDialog from './CustomerEditDialog'
 import { Link, useNavigate } from 'react-router-dom'
 import dayjs from 'dayjs'
 import cloneDeep from 'lodash/cloneDeep'
-import { HiOutlineEye } from 'react-icons/hi'
+import { HiOutlineEye, HiOutlineTrash } from 'react-icons/hi'
 import { left } from '@popperjs/core'
+import { FaEdit } from 'react-icons/fa'
 
 const statusColor = {
     Active: 'bg-emerald-500',
@@ -35,25 +36,34 @@ const ActionColumn = ({ row }) => {
     const onView = useCallback(() => {
         navigate(`/app/crm/customer-details?id=${row.user_id}&type=personal&action=${"created_pools_count"}`)
     }, [navigate, row])
-    return (
-        <div className="flex justify-end ">
+      return (
 
-            <Tooltip title="View">
-                <span
-                    className={`cursor-pointer p-2 text-lg hover:${textTheme}`}
-                    onClick={onView}
-                >
-                    <HiOutlineEye />
-
-                </span>
-            </Tooltip>
-            {/* <div
-                className={`${textTheme} cursor-pointer p-1 select-none  font-semibold whitespace-nowrap`}
+        <div className="flex  items-center gap-2 ">
+            <div
+                className={`${textTheme} cursor-pointer select-none font-semibold`}
                 onClick={onEdit}
             >
-                Edit
-            </div> */}
+              <FaEdit />
+
+            </div>
+           <div>
+           <span
+                className={`cursor-pointer p-2 hover:${textTheme}`}
+                onClick={onView}
+            >
+                <HiOutlineEye />
+            </span>
+           </div>
+
+           {/* <iv> <span
+                className={`cursor-pointer p-2 hover:${textTheme}`}
+                // onClick={onDelete}
+            >
+                <HiOutlineTrash />
+            </span></iv> */}
+
         </div>
+
     )
 }
 
@@ -67,13 +77,13 @@ const NameColumn = ({ row, style }) => {
 
     return (
         <div className={`flex items-center relative ml-5`} style={{ ...style }}>
-            <Avatar size={28} shape="circle" src={row.profile_picture} />
+            <Avatar size={28} shape="circle" src={row.profile_pic} />
             <div className="items-center ml-3 "> {/* Added relative class here */}
                 <Link
                     className={`hover:${textTheme} ml-2 rtl:mr-2 font-semibold`}
                     to={`/app/crm/customer-details?id=${row.user_id}&type=personal&action=${"created_pools_count"}`}
                 >
-                    {row.name}
+                    {row.full_name}
                 </Link>
                 <div className='font-semibold'><a href="mailto:this.guy@gmail.com?subject=Test">{row.email}</a></div>
                 <div className="flex "> {/* Added relative class here */}
@@ -105,87 +115,19 @@ const columns = [
             return <NameColumn row={row} style={{ marginLeft: '1.25rem' }} />; // Applying margin to the cell
         },
     },
-    // {
-    //     header: 'Current Plan',
-    //     accessorKey: 'plan',
-    //     cell: (props) => {
-    //         const row = props.row.original
-    //         return (
-    //             <div className="flex ">
-    //                 {(row.current_plan)}
-    //             </div>
-    //         )
-    //     },
-    // },
-
     {
-        header: 'No. of payments',
-        accessorKey: 'number_of_payments',
-        className: '',
-        // with:'43%',
+        header: 'social type',
+        accessorKey: 'social_type',
         cell: (props) => {
             const row = props.row.original
             return (
-                <Link className={` mr-5 rtl:mr-2 font-semibold`}
-                    to={`/app/crm/customer-details?id=${row.user_id}&type=personal&action=${"No_Pay"}`}
-                >
-                    <div className="grid justify-items-end  " style={{ width: '93%' }} >
-                        {/* <div className="grid justify-items-end " style={{ width: '43%' }}> */}
-                        {(row.number_of_payments)}
-                    </div></Link>
+                <div className="flex ">
+                    {(row.social_type)}
+                </div>
             )
         },
     },
-    {
-        header: 'Created pools',
-        accessorKey: 'created_pools_count',
-        cell: (props) => {
-            const row = props.row.original
-            return (
-                <Link className={` mr-5 rtl:mr-2 font-semibold`}
-                    to={`/app/crm/customer-details?id=${row.user_id}&type=personal&action=${"created_pools_count"}`}
-                >
-                    <div className="grid justify-items-end" style={{ width: '93%' }}>
 
-                        {(row.created_pools_count)}
-                    </div></Link>
-
-
-            )
-        },
-    },
-    {
-        header: 'Joined pools',
-        accessorKey: 'joined_pool_count',
-        cell: (props) => {
-            const row = props.row.original
-            return (
-                <Link className={` mr-5 rtl:mr-2 font-semibold`}
-                    to={`/app/crm/customer-details?id=${row.user_id}&type=personal&action=${"joined_pool_count"}`}
-                >
-                    <div className="grid justify-items-end" style={{ width: '93%' }} >
-
-                        {(row.joined_pool_count)}
-                    </div></Link>
-            )
-        },
-    },
-    {
-        header: 'Active pools',
-        accessorKey: 'joined_pool_count',
-        cell: (props) => {
-            const row = props.row.original
-            return (
-                <Link className={` mr-5 rtl:mr-2 font-semibold`}
-                // to={`/app/crm/customer-details?id=${row.user_id}&&action=${"joined_pool_count"}`}
-                >
-                    <div className="grid justify-items-end" style={{ width: '93%' }} >
-
-                        {(row.number_of_activepools)}
-                    </div></Link>
-            )
-        },
-    },
     // {
     //     header: 'Featured pools',
     //     accessorKey: 'joined_pool_count',
@@ -202,21 +144,10 @@ const columns = [
     //         )
     //     },
     // },
-    {
-        header: 'Total Amount',
-        accessorKey: 'amount',
-        cell: (props) => {
-            const row = props.row.original
-            return (
-                <div className="grid justify-items-end mr-5 rtl:mr-2 font-semibold" >
-                    {(row.amount) ? "$" + (row.amount) : 0}
-                </div>
-            )
-        },
-    },
+
     {
         header: 'Registered On',
-        accessorKey: 'lastOnline',
+        accessorKey: 'created_at',
         cell: (props) => {
             const row = props.row.original
             return (
@@ -243,16 +174,9 @@ const columns = [
         },
     },
     {
-        header: 'Action',
+        header: 'action',
         id: 'action',
-        cell: (props) => {
-            const row = props.row.original
-            return (
-                <div className="flex items-center"  >
-                    <ActionColumn row={props.row.original} />
-                </div>
-            )
-        },
+        cell: (props) => <ActionColumn row={props.row.original} />,
     },
 
 
@@ -260,10 +184,10 @@ const columns = [
 
 const Customers = () => {
     const dispatch = useDispatch()
-    const Alldata = useSelector((state) => state.crmUsers.data.customerList)
+    const Alldata = useSelector((state) => state.crmUsers.data.customerList?.users)
 
     const total = useSelector((state) => state.crmUsers.data.customerList?.total_rows_count)
-    const data = useSelector((state) => state.crmUsers.data.customerList?.users) || []
+    const data = useSelector((state) => state.crmUsers.data.customerList?.users) || null
     const loading = useSelector((state) => state.crmUsers.data.loading)
 
 
@@ -273,21 +197,21 @@ const Customers = () => {
 
     console.log(filterType, 'filterType')
 
-    const { pageNumber, pageSize, usertype, search } = useSelector(
+    const { pageNumber, pageSize,  search } = useSelector(
         (state) => state.crmUsers.data.tableData
     )
 
 
     const fetchData = useCallback(() => {
-        dispatch(getCustomers({ pageNumber, pageSize, usertype: 1, search, filterType }))
+        dispatch(getCustomers({ pageNumber, pageSize, search, filterType }))
     }, [pageNumber, pageSize, search, filterType, dispatch])
 
     useEffect(() => {
         fetchData()
-    }, [fetchData, pageNumber, pageSize, usertype, filterType])
+    }, [fetchData, pageNumber, pageSize, filterType])
 
     const tableData = useMemo(
-        () => ({ pageNumber, pageSize, usertype, search, filterType }),
+        () => ({ pageNumber, pageSize, search, filterType }),
         [pageNumber, pageSize, search, total]
     )
 
@@ -311,34 +235,38 @@ const Customers = () => {
         dispatch(setTableData(newTableData))
     }
 
-    if (loading) {
-        return <Loading />;
-    }
-
+    // if (loading) {
+    //     return <Loading />;
+    // }
+console.log(data,'loading')
     return (
         <>
-            {data?.length > 0 ?
-                <DataTable
-                    columns={columns}
-                    data={data}
-                    skeletonAvatarColumns={[0]}
-                    skeletonAvatarProps={{ width: 28, height: 28 }}
-                    loading={loading}
-                    pagingData={{ pageNumber, pageSize, total }}
-                    onPaginationChange={onPaginationChange}
-                    onSelectChange={onSelectChange}
-                // on={onSort}
-                /> : (
-                    <div className="h-full flex flex-col items-center justify-center">
-                        <DoubleSidedImage
-                            src="/img/others/img-2.png"
-                            darkModeSrc="/img/others/img-2-dark.png"
-                            alt="No user found!"
-                        />
-                        <h3 className="mt-8">No Users found!</h3>
-                    </div>
-                )
-            }
+         <>{data == null ? <>
+                <Loading loading={true} />
+
+            </> :
+                <>{data.length ?
+                    <DataTable
+                        columns={columns}
+                        data={data}
+                        skeletonAvatarColumns={[0]}
+                        skeletonAvatarProps={{ width: 28, height: 28 }}
+                        loading={loading}
+                        pagingData={{ pageNumber, pageSize, search, total }}
+                        onPaginationChange={onPaginationChange}
+                        onSelectChange={onSelectChange}
+                    // on={onSort}
+                    /> : (
+                        <div className="h-full flex flex-col items-center justify-center">
+                            <DoubleSidedImage
+                                src="/img/others/img-2.png"
+                                darkModeSrc="/img/others/img-2-dark.png"
+                                alt="No orgainzer found!"
+                            />
+                            <h3 className="mt-8">No Organizer found!</h3>
+                        </div>
+                    )
+                }</>} </>
             <CustomerEditDialog />
         </>
     )

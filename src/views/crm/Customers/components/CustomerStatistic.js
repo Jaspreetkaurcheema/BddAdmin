@@ -65,8 +65,7 @@ const CustomerStatistic = ({ setSelectedCard, selected }) => {
     )
     // const total = useSelector((state) => state.crmCustomers.data.AllList.total_rows_count)
 
-    const total = useSelector((state) => state.crmUsers.data.customerList.
-        totalRows)
+    const total = useSelector((state) => state.crmUsers.data.customerList.total_rows_count)
     const statisticData = useSelector(
         (state) => state.crmUsers.data
     )
@@ -83,14 +82,14 @@ const CustomerStatistic = ({ setSelectedCard, selected }) => {
 
     useEffect(() => {
         if (selected?.key == 'Active') {
-            dispatch(setTableData({ pageNumber: 1, pageSize: 25, search: '', userType: 1 }))
-            dispatch(setFilterData({ filterType: 2 }))
-            dispatch(getCustomers({ pageNumber, pageSize, usertype: 1, search, filterType: 2 }))
+            // dispatch(setTableData({ pageNumber: 1, pageSize: 25, search: '', userType: 1 }))
+            dispatch(setFilterData({ filterType: 1 }))
+            // dispatch(getCustomers({ pageNumber, pageSize, usertype: 1, search, filterType: 1 }))
         }
         if (selected?.key == 'All') {
-            dispatch(setTableData({ pageNumber: 1, pageSize: 25, search: '', userType: 1 }))
-            dispatch(setFilterData({ filterType: 1 }))
-            dispatch(getCustomers({ pageNumber, pageSize, usertype: 1, search, filterType: 1 }))
+            // dispatch(setTableData({ pageNumber: 1, pageSize: 25, search: '', userType: 1 }))
+            dispatch(setFilterData({ filterType: 0 }))
+            // dispatch(getCustomers({ pageNumber, pageSize, usertype: 1, search, filterType: 0 }))
         }
         
     }, [selected?.key,filterType])

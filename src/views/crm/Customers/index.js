@@ -14,13 +14,11 @@ const Customers = () => {
 
 
     return (
-        <div>
-            <h1>Welcome to Users Page</h1>
-
-        </div>
-    );
-    {/* <div className="flex flex-col xl:flex-row gap-8 mt-8">
-               <div className='w-full'> <CustomerStatistic setSelectedCard={setSelected} selected={selected} /></div>
+        <>
+       <div className="flex flex-col xl:flex-row gap-8 mt-8">
+               {/* <div className='w-full'> 
+                <CustomerStatistic setSelectedCard={setSelected} selected={selected} />
+                </div> */}
                <div></div>
             </div>
 
@@ -28,7 +26,10 @@ const Customers = () => {
                 <CustomersTableTools setSelectedCard={setSelected} selected={selected} />
                 <CustomersTable />
                 {/* <CustomersTable pageNo={pageNo} /> */}
-    // {/* </AdaptableCard> */} */}
+   </AdaptableCard>
+   </>
+    );
+ 
 
 }
 
