@@ -173,7 +173,7 @@ export async function apPutFaq(data) {
 export async function apPutCrmCustomer(data) {
     console.log(data,'4321')
     return ApiService.fetchData({
-        url: `/user/info/${data.user_id}`,
+        url: `/Admin/edit/${data.id}`,
         method: 'put',
         data,
     })

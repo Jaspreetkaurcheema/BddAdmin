@@ -11,7 +11,9 @@ dayjs.extend(customParseFormat)
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email Required'),
-    name: Yup.string().required('User Name Required'),
+    name: Yup.string(),
+    phone: Yup.string(),
+    username:Yup.string().nullable(),
     // location: Yup.string(),
     // title: Yup.string(),
     // phoneNumber: Yup.string().matches(
@@ -36,9 +38,10 @@ console.log(customer,'cussuussu');
         <Formik
             innerRef={ref}
             initialValues={{
-                name: customer.name || '',
+                name: customer.full_name || '',
                 email: customer.email || '',
-                img: customer.profile_picture || '',
+                username:customer.username || '',
+                phone_number: customer.phone_no || '',
                 // location: customer?.personalInfo?.location || '',
                 // title: customer?.personalInfo?.title || '',
                 // phoneNumber: customer?.personalInfo?.phoneNumber || '',

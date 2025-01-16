@@ -15,16 +15,17 @@ const CustomerEditContent = forwardRef((_, ref) => {
     )
     const data = useSelector((state) => state.crmUsers.data.customerList.users)
     // const { id } = customer
-    const { user_id } = customer
+    const { id } = customer
 
-    // console.log(user_id,'user_iduser_id')
+    // console.log(id,'idid')
 
   
     const onFormSubmit = (values) => {
         const {
             name,
             email,
-            img,
+            username,
+            phone,
             // location,
             // title,
             // phoneNumber,
@@ -36,7 +37,7 @@ const CustomerEditContent = forwardRef((_, ref) => {
             
         } = values
 
-        const basicInfo = { name, email, img }
+        const basicInfo = { name, email, username, phone }
         // const personalInfo = {
         //     location,
         //     title,
@@ -50,19 +51,19 @@ const CustomerEditContent = forwardRef((_, ref) => {
         let newData = cloneDeep(data)
         let editedCustomer = {}
         newData = newData.map((elm) => {
-                   if (elm.user_id === user_id) {
-                        elm = {user_id:user_id, ...basicInfo }
+                   if (elm.id === id) {
+                        elm = {id:id, ...basicInfo }
                 // elm.personalInfo = { ...elm.personalInfo, ...personalInfo }
                 console.log(elm,'elmmm')
                 editedCustomer = elm
             }
             return elm
         })
-
+console.log(editedCustomer,'editedCustomer')
         if (!isEmpty(editedCustomer)) {
         
             dispatch(putCustomer(editedCustomer))
-            dispatch(getCustomers({ pageNumber:1, pageSize:25, usertype: 1, search:'', filterType: 2 }))
+            dispatch(getCustomers({ pageNumber:1, pageSize:10,  search:'', filterType: 0 }))
 
         }
         dispatch(setDrawerClose())

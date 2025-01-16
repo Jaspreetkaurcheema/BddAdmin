@@ -10,7 +10,7 @@ import mockServer from './mock'
 import appConfig from 'configs/app.config'
 import './locales'
 import { apiGetProgramed } from 'services/SalesService'
-import { getEvents } from 'views/app/Events/store/dataSlice'
+
 
 const environment = process.env.NODE_ENV
 

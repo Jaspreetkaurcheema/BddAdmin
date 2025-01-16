@@ -56,6 +56,22 @@ const PersonalInfoForm = (props) => {
             </FormItem>
             <FormItem
                 label="User Name"
+                invalid={errors.username && touched.username}
+                errorMessage={errors.username}
+            >
+                <Field
+                    type="text"
+                    autoComplete="off"
+                    name="username"
+                    placeholder="User Name"
+                    component={Input}
+                    disabled={Input}           
+                    prefix={<HiUserCircle className="text-xl" />}
+                    
+                />
+            </FormItem>
+            <FormItem
+                label="Full Name"
                 invalid={errors.name && touched.name}
                 errorMessage={errors.name}
             >
@@ -63,9 +79,9 @@ const PersonalInfoForm = (props) => {
                     type="text"
                     autoComplete="off"
                     name="name"
-                    placeholder="User Name"
+                    placeholder="Full Name"
                     component={Input}
-                    disabled={Input}           
+                    // disabled={Input}           
                     prefix={<HiUserCircle className="text-xl" />}
                     
                 />

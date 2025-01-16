@@ -64,120 +64,30 @@ const appsRoute = [
             header: 'Pools',
         },
     },
-    {
-        key: 'appsApp.sports.3',
-        path: `${APP_PREFIX_PATH}/apps/sports/3`,
-        component: React.lazy(() => import('views/app/Sports')),
-        authority: [ADMIN],
-        meta: {
-            header: 'Sports',
-            
-        },
-    },
-    {
-        key: 'appsApp.sports.5',
-        path: `${APP_PREFIX_PATH}/apps/sports/5`,
-        component: React.lazy(() => import('views/app/Sports')),
-        authority: [ADMIN],
-        meta: {
-            header: 'Sports',
-            
-        },
-    },
-    {
-        key: 'appsApp.sports.2',
-        path: `${APP_PREFIX_PATH}/apps/sports/2`,
-        component: React.lazy(() => import('views/app/Sports')),
-        authority: [ADMIN],
-        meta: {
-            header: 'Sports',
-            
-        },
-    },
-    {
-        key: 'appsApp.poolEntries',
-        path:`${APP_PREFIX_PATH}/apps/poolEntries`,
-        component: React.lazy(() => import('views/app/PoolEntries')),
-        authority: [ADMIN],
-        meta: {
-            header: 'Pools Entries',
-            
-        },
-    },
-    {
-        key: 'appsApp.poolpoolMembers',
-        path:`${APP_PREFIX_PATH}/apps/poolMembers`,
-        component: React.lazy(() => import('views/app/PoolMembers')),
-        authority: [ADMIN],
-        meta: {
-            header: 'Pools Members',
-            
-        },
-    },
-    {
-        key: 'appsApp.poolRequests',
-        path:`${APP_PREFIX_PATH}/apps/poolRequests`,
-        component: React.lazy(() => import('views/app/PoolMembers')),
-        authority: [ADMIN],
-        meta: {
-            header: 'Pools Requests',
-            
-        },
-    },
-    {
-        key: 'appsApp.sports',
-        path: `${APP_PREFIX_PATH}/apps/poolevents`,
-        component: React.lazy(() => import('views/app/Poolevents')),
-        authority: [ADMIN],
-        meta: {
-            header: 'Sports pool events',
-        },
-    },
-    {
-        key: 'appEvent.poolevents.4',
-        path: `${APP_PREFIX_PATH}/apps/poolevents/4`,
-        component: React.lazy(() => import('views/app/Events')),
-        authority: [ADMIN],
-        meta: {
-            header: 'Pool events',
-        },
-    },
-    {
-        key: 'appEvent.poolevents.6',
-        path: `${APP_PREFIX_PATH}/apps/poolevents/6`,
-        component: React.lazy(() => import('views/app/Events')),
-        authority: [ADMIN],
-        meta: {
-            header: 'Pool events',
-        },
-    },
-    {
-        key: 'appEvent.poolevents.2',
-        path: `${APP_PREFIX_PATH}/apps/poolevents/2`,
-        component: React.lazy(() => import('views/app/Events')),
-        authority: [ADMIN],
-        meta: {
-            header: 'Pool events',
-        },
-    },
-    {
-        key: 'appsApp.poolevents',
-        path: `${APP_PREFIX_PATH}/apps/Addpoolevents`,
-        component: React.lazy(() => import('views/app/PoolEventAdd')),
-        authority: [ADMIN],
-        meta: {
-            header: 'Sports pool events',
-        },
-    },
-    {
-        key: 'appsApp.poolgames',
-        path: `${APP_PREFIX_PATH}/apps/poolgames`,
-        component: React.lazy(() => import('views/app/Poolgames')),
-        authority: [ADMIN],
-        meta: {
-            header: 'Sports pool games',
-        },
-    },
+   
+
+   
+   
+    
+    // {
+    //     key: 'appEvent.poolevents.2',
+    //     path: `${APP_PREFIX_PATH}/apps/poolevents/2`,
+    //     component: React.lazy(() => import('views/app/Events')),
+    //     authority: [ADMIN],
+    //     meta: {
+    //         header: 'Pool events',
+    //     },
+    // },
+   
+    // {
+    //     key: 'appsApp.poolgames',
+    //     path: `${APP_PREFIX_PATH}/apps/poolgames`,
+    //     component: React.lazy(() => import('views/app/Poolgames')),
+    //     authority: [ADMIN],
+    //     meta: {
+    //         header: 'Sports pool games',
+    //     },
+    // },
     {
         key: 'appsCms.faqs',
         path: `${APP_PREFIX_PATH}/cms/faqs`,
@@ -285,15 +195,15 @@ const appsRoute = [
             header: 'Archive',
         },
     },
-    {
-        key: 'appsMaintenance.deployment',
-        path: `${APP_PREFIX_PATH}/maintenance/deployment`,
-        component: React.lazy(() => import('views/default/deployment_default_file')),
-        authority: [ADMIN],
-        meta: {
-            header: 'Deployment',
-        },
-    },
+    // {
+    //     key: 'appsMaintenance.deployment',
+    //     path: `${APP_PREFIX_PATH}/maintenance/deployment`,
+    //     component: React.lazy(() => import('views/default/deployment_default_file')),
+    //     authority: [ADMIN],
+    //     meta: {
+    //         header: 'Deployment',
+    //     },
+    // },
     // {
     //     key: 'appsFinance.payments',
     //     path: `${APP_PREFIX_PATH}/finance/payments`,
@@ -332,16 +242,16 @@ const appsRoute = [
             headerContainer: true,
         },
     },
-    {
-        key: 'appsApp.pooleventdetails',
-        path: `${APP_PREFIX_PATH}/apps/poolevent-details`,
-        component: React.lazy(() => import('views/app/PoolEventDetails')),
-        authority: [ADMIN],
-        meta: {
-            header: '',
-            headerContainer: true,
-        },
-    },
+    // {
+    //     key: 'appsApp.pooleventdetails',
+    //     path: `${APP_PREFIX_PATH}/apps/poolevent-details`,
+    //     component: React.lazy(() => import('views/app/PoolEventDetails')),
+    //     authority: [ADMIN],
+    //     meta: {
+    //         header: '',
+    //         headerContainer: true,
+    //     },
+    // },
     {
         key: 'appsCrm.biscustomers',
         path: `${APP_PREFIX_PATH}/crm/business-users`,

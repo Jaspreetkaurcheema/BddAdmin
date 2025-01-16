@@ -12,7 +12,7 @@ import {
 import useAuth from 'utils/hooks/useAuth'
 import useDirection from 'utils/hooks/useDirection'
 import useLocale from 'utils/hooks/useLocale'
-import { getEvents } from 'views/app/Events/store/dataSlice'
+
 
 const layouts = {
     [LAYOUT_TYPE_CLASSIC]: lazy(() => import('./ClassicLayout')),
@@ -25,9 +25,9 @@ const layouts = {
 
 const Layout = () => {
     const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getEvents())
-    }, [])
+    // useEffect(() => {
+    //     dispatch(getEvents())
+    // }, [])
 
     const layoutType = useSelector((state) => state.theme.layout.type)
 
