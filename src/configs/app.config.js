@@ -1,7 +1,7 @@
 const appConfig = {
     // apiPrefix: 'http://localhost:8000/apis/admin',
    
-    apiPrefix: 'http://localhost:4000/apis/admin/auth/',
+    apiPrefix: 'http://159.223.192.153/apis/admin/auth/',
     // apiPrefix: 'https://portalapi.kingpool.app/api/',
     authenticatedEntryPath: '/app/project/dashboard',
     unAuthenticatedEntryPath: '/sign-in',

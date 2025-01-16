@@ -2,17 +2,12 @@ import React from 'react'
 import { Card } from 'components/ui'
 import { Container, ActionLink } from 'components/shared'
 import AntDesignIcons from './AntDesignIcons'
-import BootstrapIcons from './BootstrapIcons'
 import BoxIcons from './BoxIcons'
 import DeviIcons from './DeviIcons'
-import Feather from './Feather'
-import FlatColorIcons from './FlatColorIcons'
+
 import FontAwesome from './FontAwesome'
 import GameIcons from './GameIcons'
-import GithubOcticonsIcons from './GithubOcticonsIcons'
 import GrommetIcons from './GrommetIcons'
-import HeroIcons from './HeroIcons'
-import IcoMoonFree from './IcoMoonFree'
 import Ionicons4 from './Ionicons4'
 import Ionicons5 from './Ionicons5'
 import MaterialDesignIcons from './MaterialDesignIcons'
@@ -50,11 +45,6 @@ const iconSets = [
         render: () => <AntDesignIcons />,
     },
     {
-        name: 'Bootstrap Icons',
-        url: 'https://react-icons.github.io/react-icons/icons?name=bs',
-        render: () => <BootstrapIcons />,
-    },
-    {
         name: 'BoxIcons',
         url: 'https://react-icons.github.io/react-icons/icons?name=bi',
         render: () => <BoxIcons />,
@@ -64,16 +54,7 @@ const iconSets = [
         url: 'https://react-icons.github.io/react-icons/icons?name=di',
         render: () => <DeviIcons />,
     },
-    {
-        name: 'Feather',
-        url: 'https://react-icons.github.io/react-icons/icons?name=fi',
-        render: () => <Feather />,
-    },
-    {
-        name: 'Flat Color Icons',
-        url: 'https://react-icons.github.io/react-icons/icons?name=fc',
-        render: () => <FlatColorIcons />,
-    },
+
     {
         name: 'Font Awesome',
         url: 'https://react-icons.github.io/react-icons/icons?name=fa',
@@ -85,25 +66,11 @@ const iconSets = [
         render: () => <GameIcons />,
     },
     {
-        name: 'Github Octicons icons',
-        url: 'https://react-icons.github.io/react-icons/icons?name=go',
-        render: () => <GithubOcticonsIcons />,
-    },
-    {
         name: 'Grommet-Icons',
         url: 'https://react-icons.github.io/react-icons/icons?name=gr',
         render: () => <GrommetIcons />,
     },
-    {
-        name: 'Heroicons',
-        url: 'https://react-icons.github.io/react-icons/icons?name=hi',
-        render: () => <HeroIcons />,
-    },
-    {
-        name: 'IcoMoon Free',
-        url: 'https://react-icons.github.io/react-icons/icons?name=im',
-        render: () => <IcoMoonFree />,
-    },
+
     {
         name: 'Ionicons 4',
         url: 'https://react-icons.github.io/react-icons/icons?name=io',
