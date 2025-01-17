@@ -41,7 +41,7 @@ const ActionColumn = ({ row }) => {
         <div className="flex  items-center gap-2 ">
             <div
                 className={`${textTheme} cursor-pointer select-none font-semibold`}
-                onClick={onEdit}
+                // onClick={onEdit}
             >
               <FaEdit />
 
@@ -49,7 +49,7 @@ const ActionColumn = ({ row }) => {
            <div>
            <span
                 className={`cursor-pointer p-2 hover:${textTheme}`}
-                onClick={onView}
+                // onClick={onView}
             >
                 <HiOutlineEye />
             </span>
@@ -261,9 +261,9 @@ console.log(data,'loading')
                             <DoubleSidedImage
                                 src="/img/others/img-2.png"
                                 darkModeSrc="/img/others/img-2-dark.png"
-                                alt="No orgainzer found!"
+                                alt="No user found!"
                             />
-                            <h3 className="mt-8">No Organizer found!</h3>
+                            <h3 className="mt-8">No User found!</h3>
                         </div>
                     )
                 }</>} </>
