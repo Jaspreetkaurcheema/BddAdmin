@@ -15,6 +15,7 @@ import cloneDeep from 'lodash/cloneDeep'
 import { HiOutlineEye, HiOutlineTrash } from 'react-icons/hi'
 import { left } from '@popperjs/core'
 import { FaEdit } from 'react-icons/fa'
+import { generateImage } from 'components/template/UserDropdown'
 
 const statusColor = {
     Active: 'bg-emerald-500',
@@ -34,14 +35,14 @@ const ActionColumn = ({ row }) => {
         dispatch(setSelectedCustomer(row))
     }
     const onView = useCallback(() => {
-        navigate(`/app/crm/customer-details?id=${row.user_id}&type=personal&action=${"created_pools_count"}`)
+        navigate(`/app/crm/customer-details?id=${row.id}`)
     }, [navigate, row])
       return (
 
         <div className="flex  items-center gap-2 ">
             <div
                 className={`${textTheme} cursor-pointer select-none font-semibold`}
-                // onClick={onEdit}
+                onClick={onEdit}
             >
               <FaEdit />
 
@@ -49,7 +50,7 @@ const ActionColumn = ({ row }) => {
            <div>
            <span
                 className={`cursor-pointer p-2 hover:${textTheme}`}
-                // onClick={onView}
+                onClick={onView}
             >
                 <HiOutlineEye />
             </span>
@@ -77,11 +78,11 @@ const NameColumn = ({ row, style }) => {
 
     return (
         <div className={`flex items-center relative ml-5`} style={{ ...style }}>
-            <Avatar size={28} shape="circle" src={row.profile_pic} />
+            <Avatar size={28} shape="circle" src={row.profile_pic?  row.profile_pic : generateImage(row.full_name ?row.full_name :''   )} />
             <div className="items-center ml-3 "> {/* Added relative class here */}
                 <Link
                     className={`hover:${textTheme} ml-2 rtl:mr-2 font-semibold`}
-                    to={`/app/crm/customer-details?id=${row.user_id}&type=personal&action=${"created_pools_count"}`}
+                    to={`/app/crm/customer-details?id=${row.id}`}
                 >
                     {row.full_name}
                 </Link>
@@ -108,7 +109,7 @@ const NameColumn = ({ row, style }) => {
 const columns = [
 
     {
-        header: <span style={{ marginLeft: '1.25rem' }}>User name</span>, // Applying margin to the header
+        header: <span style={{ marginLeft: '1.25rem' }}>User</span>, // Applying margin to the header
         accessorKey: 'name',
         cell: (props) => {
             const row = props.row.original;

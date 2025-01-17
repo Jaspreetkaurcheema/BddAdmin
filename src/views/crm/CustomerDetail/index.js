@@ -84,7 +84,7 @@ const CustomerDetail = () => {
     const id = query.get('id')
     useEffect(() => {
 
-        if (id > 0) dispatch(getCustomer({ id }))
+        // if (id > 0) dispatch(getCustomer({ id }))
     }, [id])
 
     useEffect(() => {

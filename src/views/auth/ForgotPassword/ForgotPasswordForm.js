@@ -82,7 +82,7 @@ const ForgotPasswordForm = (props) => {
                                         type="email"
                                         autoComplete="off"
                                         name="email"
-                                        placeholder="Email"
+                                        placeholder="Enter your email address"
                                         component={Input}
                                     />
                                 </FormItem>
@@ -97,7 +97,7 @@ const ForgotPasswordForm = (props) => {
                             </Button>
                             <div className="mt-4 text-center">
                                 <span>Back to </span>
-                                <ActionLink to={signInUrl}>Sign in</ActionLink>
+                                <ActionLink to={signInUrl}>Sign In</ActionLink>
                             </div>
                         </FormContainer>
                     </Form>

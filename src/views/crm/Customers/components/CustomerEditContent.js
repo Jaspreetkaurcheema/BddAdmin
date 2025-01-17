@@ -26,6 +26,8 @@ const CustomerEditContent = forwardRef((_, ref) => {
             email,
             username,
             phone,
+            enabled,
+            img
             // location,
             // title,
             // phoneNumber,
@@ -36,8 +38,9 @@ const CustomerEditContent = forwardRef((_, ref) => {
 
             
         } = values
-
-        const basicInfo = { name, email, username, phone }
+        const isValidImage = img && !img.startsWith('data:image/svg+xml;base64');
+        const basicInfo = { name, email, username, phone , enabled, ...(isValidImage && { img }) // Include img only if it's valid
+    }
         // const personalInfo = {
         //     location,
         //     title,

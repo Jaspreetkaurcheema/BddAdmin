@@ -246,7 +246,7 @@ export async function apiGetCrmPoolList(data) {
 export async function apiGetCrmActivePoolList(data) {
 
     return ApiService.fetchData({
-        url: `/Admin/active/pools`,
+        url: `/Admin/userDetail`,
         method: 'post',
         data
     

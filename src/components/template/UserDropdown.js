@@ -26,8 +26,29 @@ const dropdownItemList = [
     // },
 ]
 
+export function generateImage(text, fontSize = 30, fontFamily = 'Arial') {
+    const initials = (text?.split(' ').map(word => word.charAt(0).toUpperCase()).join(''))?.slice(0, 2);
+    const svgString = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+            <!-- Background rectangle -->
+            <rect width="100%" height="100%" fill="#6c757d"/>
+            
+            <!-- Text element -->
+            <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+                font-size="${fontSize}" font-family="${fontFamily}" fill="white">
+                ${initials}
+            </text>
+        </svg>
+    `;
+  
+    // Encode SVG string to data URL
+    const encodedData = window.btoa(unescape(encodeURIComponent(svgString)));
+    const dataURL = `data:image/svg+xml;base64,${encodedData}`;
+    
+    return dataURL;
+  }
 export const UserDropdown = ({ className }) => {
-    const { avatar, userName, authority, email } = useSelector(
+    const { avatar, userName, authority, email , full_name } = useSelector(
         (state) => state.auth.user
     )
     console.log(authority,'authorityauthority')
@@ -36,7 +57,14 @@ export const UserDropdown = ({ className }) => {
 
     const UserAvatar = (
         <div className={classNames(className, 'flex items-center gap-2')}>
-            <Avatar size={32} shape="circle" src={avatar} />
+				{/* <img src={generateImage(userData?.username ? userData?.username :''   )} alt='team_logo' width='100'  /> */}
+
+            <Avatar size={32} shape="circle"
+           src =  {avatar ? {avatar} :  generateImage(full_name)
+
+            }
+           
+             />
             <div className="hidden md:block">
                 <div className="text-xs capitalize">
                     {authority || 'guest'}

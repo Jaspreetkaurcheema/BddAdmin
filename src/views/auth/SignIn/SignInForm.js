@@ -14,7 +14,7 @@ import * as Yup from 'yup'
 import useAuth from 'utils/hooks/useAuth'
 
 const validationSchema = Yup.object().shape({
-    email: Yup.string().email('Please Enter valid email').required('Please enter your email'),
+    email: Yup.string().email('Please Enter valid email').required('Please enter your email address'),
     password: Yup.string().required('Please enter your password'),
     rememberMe: Yup.bool(),
 })
@@ -79,7 +79,7 @@ const SignInForm = (props) => {
                                     type="text"
                                     autoComplete="off"
                                     name="email"
-                                    placeholder="email"
+                                    placeholder="Enter your email address"
                                     component={Input}
                                 />
                             </FormItem>
@@ -91,7 +91,7 @@ const SignInForm = (props) => {
                                 <Field
                                     autoComplete="off"
                                     name="password"
-                                    placeholder="Password"
+                                    placeholder="Enter your password"
                                     component={PasswordInput}
                                 />
                             </FormItem>

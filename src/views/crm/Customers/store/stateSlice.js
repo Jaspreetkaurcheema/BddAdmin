@@ -4,9 +4,13 @@ const stateSlice = createSlice({
     name: 'crmUsers/state',
     initialState: {
         drawerOpen: false,
-        selectedCustomer: {}
+        selectedCustomer: {},
+        statusConfirmation:false
     },
     reducers: {
+        toggleStatusConfirmation: (state, action) => {
+            state.statusConfirmation = action.payload
+        },
         setSelectedCustomer: (state, action) => {
             state.selectedCustomer = action.payload
         },
@@ -20,6 +24,7 @@ const stateSlice = createSlice({
 })
 
 export const {
+    toggleStatusConfirmation,
     setSelectedCustomer,
     setDrawerOpen,
     setDrawerClose,

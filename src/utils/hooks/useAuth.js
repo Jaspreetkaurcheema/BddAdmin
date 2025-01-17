@@ -34,6 +34,7 @@ function useAuth() {
                                 userName: 'Anonymous',
                                 authority: ['Admin'],
                                 email: '',
+                                fullname:resp.data.user.full_name
                             }
                         )
                     )

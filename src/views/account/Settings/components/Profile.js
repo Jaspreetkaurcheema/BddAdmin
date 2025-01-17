@@ -21,6 +21,7 @@
         HiOutlineUser,
         HiCheck,
         HiOutlineGlobeAlt,
+        HiPhone,
     } from 'react-icons/hi'
     import * as Yup from 'yup'
     import { apiPutAdminprofilesData } from 'services/AccountServices';
@@ -181,7 +182,7 @@
                                     {...validatorProps}
                                 >
                                     <Field
-                                        type="text"
+                                        // type="text"
                                         autoComplete="off"
                                         name="phone_no"
                                         value={values.phone_no}
@@ -189,7 +190,7 @@
                                         placeholder={data?.phone_no}
                                         component={Input}
                                         prefix={
-                                            <HiOutlineUserCircle className="text-xl" />
+                                            <HiPhone className="text-xl" />
                                         }
                                     />
                                 </FormRow>

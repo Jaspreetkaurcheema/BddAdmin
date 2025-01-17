@@ -291,7 +291,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'Created' }) => {
     let selector = useSelector((state) => state)
 
     const [data, setData] = useState(null);
-    const id = searchParams.get('id');
+    const id = searchParams.get('user_id');
 
 
     console.log(poolsData?.data, 'pooool123')

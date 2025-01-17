@@ -6,6 +6,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat'
 import * as Yup from 'yup'
 import PersonalInfoForm from './PersonalInfoForm'
 import SocialLinkForm from './SocialLinkForm'
+import { generateImage } from 'components/template/UserDropdown'
 
 dayjs.extend(customParseFormat)
 
@@ -14,6 +15,7 @@ const validationSchema = Yup.object().shape({
     name: Yup.string(),
     phone: Yup.string(),
     username:Yup.string().nullable(),
+    enabled: Yup.string().required('Dropdown Required'),
     // location: Yup.string(),
     // title: Yup.string(),
     // phoneNumber: Yup.string().matches(
@@ -42,6 +44,8 @@ console.log(customer,'cussuussu');
                 email: customer.email || '',
                 username:customer.username || '',
                 phone_number: customer.phone_no || '',
+                enabled: customer.enabled || 0,
+                img: customer.profile_pic || generateImage(customer.full_name ?customer.full_name:''   ),
                 // location: customer?.personalInfo?.location || '',
                 // title: customer?.personalInfo?.title || '',
                 // phoneNumber: customer?.personalInfo?.phoneNumber || '',
@@ -62,7 +66,8 @@ console.log(customer,'cussuussu');
                 setSubmitting(false)
             }}
         >
-            {({ touched, errors, resetForm }) => (
+            {({ touched,values, errors, resetForm }) => (
+                
                 <Form>
                     <FormContainer>
                         <Tabs defaultValue="personalInfo">
@@ -76,6 +81,7 @@ console.log(customer,'cussuussu');
                                 <TabContent value="personalInfo">
                                     <PersonalInfoForm
                                         touched={touched}
+                                        values={values}
                                         errors={errors}
                                     />
                                 </TabContent>

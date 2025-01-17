@@ -1,5 +1,5 @@
-import React from 'react'
-import { DatePicker, Input, FormItem, Avatar, Upload } from 'components/ui'
+import React, { useCallback } from 'react'
+import { DatePicker, Input, FormItem, Avatar, Upload, Select, Button } from 'components/ui'
 import {
     HiUserCircle,
     HiMail,
@@ -9,14 +9,35 @@ import {
     HiOutlineUser,
 } from 'react-icons/hi'
 import { Field } from 'formik'
+import { useDispatch } from 'react-redux'
+import { toggleStatusConfirmation } from '../Customers/store/stateSlice'
 
 const PersonalInfoForm = (props) => {
-    const { touched, errors } = props
-
-    const onSetFormFile = (form, field, file) => {
-        form.setFieldValue(field.name, URL.createObjectURL(file[0]))
+    const { touched, values ,errors } = props
+    const dispatch = useDispatch()
+console.log(values,'values 123')
+    const onSetFormFile = (form, field, file ) => {
+        form.setFieldValue(field.name, URL.createObjectURL(file[0]) )
+      
     }
+    const Options = [
+        { value: 1, label: 'Active' },
+        { value: 2, label: 'Inactive' },
+     
+    ]
+    const initialDispatch = () => {
+        dispatch(toggleStatusConfirmation(true))
+    }
+    const onStatus = useCallback(() => {
 
+
+        // dispatch(deletePromo({id:row.id,isDelete:true})) 
+        // dispatch(getCustomers({ pageNumber:1, pageSize:10, search: '' }))
+        initialDispatch()
+        // setIsVisible(true)
+
+console.log(values,'valuesvalues')
+    })
     return (
         <>
             <FormItem
@@ -25,22 +46,30 @@ const PersonalInfoForm = (props) => {
             >
                 <Field name="img">
                     {({ field, form }) => {
+
+                        console.log(field,'fieldfield')
                         const avatarProps = field.value
                             ? { src: field.value }
                             : {}
                         return (
                             <div className="flex justify-center">
-                                <Upload
+                                {/* <Upload
                                     className="cursor-pointer"
-                                    onChange={(files) =>
-                                        onSetFormFile(form, field, files)
-                                    }
-                                    onFileRemove={(files) =>
-                                        onSetFormFile(form, field, files)
-                                    }
+                                    // onChange={(files) =>
+                                    // {
+                                    //     onSetFormFile(form, field, files)
+                                    //     form.setFieldValue(`${field.name}_file`, files[0])
+                                    // }
+                                    // }
+                                    // onFileRemove={(files) =>{
+                                    //     onSetFormFile(form, field, files)
+                                    //     form.setFieldValue(`${field.name}_file`, '')
+                                    // }
+                                       
+                                    // }
                                     showList={false}
                                     uploadLimit={1}
-                                >
+                                > */}
                                     <Avatar
                                         className="border-2 border-white dark:border-gray-800 shadow-lg"
                                         size={100}
@@ -48,7 +77,7 @@ const PersonalInfoForm = (props) => {
                                         icon={<HiOutlineUser />}
                                         {...avatarProps}
                                     />
-                                </Upload>
+                                {/* </Upload> */}
                             </div>
                         )
                     }}
@@ -98,6 +127,41 @@ const PersonalInfoForm = (props) => {
                     placeholder="Email"
                     component={Input}
                     prefix={<HiMail className="text-xl" />}
+                />
+            </FormItem>
+            <FormItem
+                label="Status"
+                invalid={errors.enabled && touched.enabled}
+                errorMessage={errors.enabled}
+            >
+                <Field
+                    name="enabled"
+                    component={({ field, form }) => (
+                        <div className="flex items-center  gap-2">
+
+                            <Select
+                                style={{ width: '100%' }}
+
+                                field={field}
+                                form={form}
+                                options={Options}
+                                value={Options.filter(
+                                    (category) =>
+                                        category.value == values.enabled
+                                )}
+                                onChange={(option) =>
+                                    form.setFieldValue(
+                                        field.name,
+                                        option.value
+                                    )
+                                }
+                            />
+
+                            <div >
+                            
+                            </div>
+                        </div>
+                    )}
                 />
             </FormItem>
             {/* <FormItem
