@@ -30,14 +30,14 @@ export const SidePanel = (props) => {
 
     return (
         <>
-            <div
+            {/* <div
                 className={classNames('text-2xl', className)}
                 onClick={openPanel}
                 {...rest}
             >
                 <HiOutlineCog />
-            </div>
-            <Drawer
+            </div> */}
+            {/* <Drawer
                 title="Theme Config"
                 isOpen={panelExpand}
                 onClose={closePanel}
@@ -46,7 +46,7 @@ export const SidePanel = (props) => {
                 width={375}
             >
                 <SidePanelContent callBackClose={closePanel} />
-            </Drawer>
+            </Drawer> */}
         </>
     )
 }
