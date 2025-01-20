@@ -315,11 +315,11 @@ const CustomerProfile = ({ data = {} }) => {
         //                 title="Bio"
         //                 value={data.data?.bio}
         //             /> */}
-        //             {/* <CustomerInfoField
-        //                 title="Date of birth"
-        //                 value=
-        //                 {dayjs(data.personalInfo?.dob).format('MM/DD/YYYY')}
-        //             /> */}
+                    // {/* <CustomerInfoField
+                    //     title="Date of birth"
+                    //     value=
+                    //     {dayjs(data.personalInfo?.dob).format('MM/DD/YYYY')}
+                    // /> */}
         //             <CustomerInfoField
         //                 title="Pool Owner"
         //                 value={data.data?.pool_owner_email}

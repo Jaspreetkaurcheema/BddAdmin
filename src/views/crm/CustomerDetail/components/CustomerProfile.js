@@ -89,24 +89,29 @@ const CustomerProfileAction = ({ id }) => {
     )
 }
 
-const CustomerProfile = ({ data = {} }) => {
+const CustomerProfile = ({ data = {}, total={} }) => {
     console.log(data, 'dataper1')
     return (
         <Card className='overflow-hidden h-[210px] '>
             <div className="flex flex-col xl:justify-between  relative h-full 2xl:min-w-[400px] mx-auto ml-16 ">
                 <div className="flex items-center justify-between ">
                     <div className="flex items-center gap-4">
-                        <Avatar size={90} shape="circle" src={data.data.user_details?.personal_profile_picture ?data.data.user_details?.personal_profile_picture:data.data.user_details?.business_profile_picture} />
+                        <Avatar size={90} shape="circle" src={data.profile_pic ?data.profile_pic:''} />
                         <div>
-                            <h4 className="font-bold">{data.data.user_details?.username}</h4>
-                            <CustomerInfoField value={data.data.user_details?.email} />
-                            {data.data.user_details?.website_url ? <CustomerInfoField
+                            <h4 className="font-bold">{data.full_name}</h4>
+                            <CustomerInfoField value={data.email} />
+                            {data.website_url ? <CustomerInfoField
 
-                                value={data.data.user_details?.website_url}
+                                value={total.total}
                             /> : <></>}
                         </div>
-                        <div className="corner-ribbon  sticky  text-white shadow-lg  " style={{ width: '155px', left: '-130px', lineHeight: '15px', color: '#f0f0f0', background: '#e43 ', top: '11px', transform: 'rotate(-45deg) ', position: 'absolute', textAlign: 'center', fontSize: '10px' }}>Premium </div>
+                        
                     </div>
+                                        {/* <CustomerInfoField
+                        title="Date of birth"
+                        value=
+                        {total.total}
+                    /> */}
                     <div>
 
 
@@ -123,9 +128,13 @@ const CustomerProfile = ({ data = {} }) => {
                     {/* <CustomerInfoField title="Name" value={data.data.user_details?.firstname} /> */}
 
                 </div>
-                {/* <div className="mt-4 flex flex-col xl:flex-row gap-2">
-                    <CustomerProfileAction id={data.personalInfo?.id} />
-                </div> */}
+                <div className="mt-4 flex flex-col xl:flex-row gap-2">
+                Total records : {total.total}
+                {/* <CustomerInfoField
+                        title="Total records"
+                        value= {total.total}
+                        /> */}
+                </div>
             </div>
         </Card>
     )

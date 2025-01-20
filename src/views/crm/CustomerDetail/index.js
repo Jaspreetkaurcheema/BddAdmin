@@ -26,15 +26,18 @@ injectReducer('crmCustomerDetailss', reducer)
 const CustomerDetail = () => {
 
     const dispatch = useDispatch()
-    const [selected, setSelected] = useState({ key: 'Active' })
+    const [selected, setSelected] = useState({ key: 'B2b' })
     const location = useLocation()
     const searchParams = new URLSearchParams(location.search);
     const userType = searchParams.get('type');
 
     const data = useSelector(
-        (state) => state.crmCustomerDetailss.data.profileData
+        (state) => state.crmCustomerDetailss.data.activeList.users
     )
  
+    const totalData = useSelector(
+        (state) => state.crmCustomerDetailss.data.activeList.count
+    )
     // const [selectedData, setSelectedData] = useState({})
     const query = useQuery()
 
@@ -80,6 +83,8 @@ const CustomerDetail = () => {
     )
 
 
+    console.log(poolList, 'hfghgjhgjguju')
+
 
     const id = query.get('id')
     useEffect(() => {
@@ -100,50 +105,56 @@ const CustomerDetail = () => {
 
     const fetchData = () => {
 
-        if (selected.key == 'Created') {
-            dispatch(getPoolList({ pageNumber: 1, pageSize, search: '', isJoined: true, userId: id }))
-            dispatch(setTableData({ pageNumber, pageSize, isJoined: true, search: '', userId: id }))
+        if (selected.key == 'B2b') {
+            dispatch(getActivePoolList({ pageNumber, pageSize, search, userId: id , category_id:1}))
+             dispatch(setTableData({ pageNumber, pageSize, search, userId: id , userId: id , category_id: 1 }))
+
+            // dispatch(setTableData({ pageNumber, pageSize, isJoined: true, search: '', userId: id }))
 
         }
-        if (selected.key == 'Joined') {
-            dispatch(getPoolList({ pageNumber: 1, pageSize, search: '', isJoined: false, userId: id }))
-            dispatch(setTableData({ pageNumber, pageSize, isJoined: false, search: '', userId: id }))
+        if (selected.key == 'Finance') {
+            dispatch(getActivePoolList({ pageNumber, pageSize, search, userId: id , category_id:2}))
+             dispatch(setTableData({ pageNumber, pageSize, search, userId: id , userId: id , category_id: 2 }))
+            // dispatch(setTableData({ pageNumber, pageSize, isJoined: false, search: '', userId: id }))
 
         }
-        if (selected.key == 'Active') {
-            dispatch(getActivePoolList({ pageNumber, pageSize, search, userId: id }))
-            dispatch(setTableData({ pageNumber: 1, pageSize, search: '', userId: id }))
+        if (selected.key == 'Location') {
+            dispatch(getActivePoolList({ pageNumber, pageSize, search, userId: id , category_id:3}))
+             dispatch(setTableData({ pageNumber, pageSize, search, userId: id , userId: id , category_id: 3 }))
+            // dispatch(setTableData({ pageNumber: 1, pageSize, search: '', userId: id }))
 
         }
-        if (selected.key == 'Featured') {
-            dispatch(getFeaturedPoolList({ pageNumber:1, pageSize, search, userId: id }))
-            dispatch(setTableData({ pageNumber: 1, pageSize, search: '', userId: id }))
+        if (selected.key == 'Activity') {
+            dispatch(getActivePoolList({ pageNumber, pageSize, search, userId: id , category_id:4}))
+             dispatch(setTableData({ pageNumber, pageSize, search, userId: id , userId: id , category_id: 4 }))
+            // dispatch(setTableData({ pageNumber: 1, pageSize, search: '', userId: id }))
 
         }
-        if (selected.key == 'Accomplishment') {
-            dispatch(getAccomplishList({ pageNumber, pageSize,  userId: id }))
-            dispatch(setTableData({ pageNumber: 1, pageSize, search: '', userId: id }))
+        if (selected.key == 'Social') {
+            dispatch(getActivePoolList({ pageNumber, pageSize, search, userId: id , category_id:5}))
+             dispatch(setTableData({ pageNumber, pageSize, search, userId: id , userId: id , category_id: 5 }))
+            // dispatch(setTableData({ pageNumber: 1, pageSize, search: '', userId: id }))
 
         }
-        if (selected.key == 'History') {
-            dispatch(getHistoryList({ pageNumber, pageSize, userId: id,filter_type:filter_type }))
-            dispatch(setTableData({ pageNumber: 1, pageSize, search: '', filter_type:filter_type, userId: id }))
-        }
-        if (selected.key == 'Payment') {
-            dispatch(getPaymentPoolList({ pageNumber, pageSize, userId: id,search:'',filterType:1,paymentType}))
-            dispatch(setTableData({ pageNumber: 1, pageSize, search: '', userId: id }))
+        // if (selected.key == 'History') {
+        //     dispatch(getHistoryList({ pageNumber, pageSize, userId: id,filter_type:filter_type }))
+        //     dispatch(setTableData({ pageNumber: 1, pageSize, search: '', filter_type:filter_type, userId: id }))
+        // }
+        // if (selected.key == 'Payment') {
+        //     dispatch(getPaymentPoolList({ pageNumber, pageSize, userId: id,search:'',filterType:1,paymentType}))
+        //     dispatch(setTableData({ pageNumber: 1, pageSize, search: '', userId: id }))
 
-        }
-        if (selected.key == 'Entries') {
-            dispatch(getEntiesList({ pageNumber, pageSize, userId: id,search:''}))
-            dispatch(setTableData({ pageNumber: 1, pageSize, search: '', userId: id }))
+        // }
+        // if (selected.key == 'Entries') {
+        //     dispatch(getEntiesList({ pageNumber, pageSize, userId: id,search:''}))
+        //     dispatch(setTableData({ pageNumber: 1, pageSize, search: '', userId: id }))
 
-        }
-        if (selected.key == 'Victory') {
-            dispatch(getPoolStats({ id: id}))
-            dispatch(setTableData({ pageNumber: 1, pageSize, search: '', userId: id }))
+        // }
+        // if (selected.key == 'Victory') {
+        //     dispatch(getPoolStats({ id: id}))
+        //     dispatch(setTableData({ pageNumber: 1, pageSize, search: '', userId: id }))
 
-        }
+        // }
 
 
     }
@@ -165,67 +176,62 @@ const CustomerDetail = () => {
         else return activePoolList
     }
 
-    console.log(loadings, 'loadingsloadings')
-    console.log(loading, 'loadingsloadings 1')
+   console.log(loading,'fgfgfgfg')
     return (
+ data == null ? 
+ <Loading loading={loading}>
+        </Loading> :
+    <Container className="h-full">
+       
 
-        <Container className="h-full">
-            <Loading loading={loadings}>
+               
+    <div>
+        {/* <div className='flex justify-between items-center'>
+            <div> <h2>Detail of {data.data.user_details?.username} </h2></div>
+            <BackButton />
+            
+<CustomerTableFilter/>
+            </div> */}
+            <div className='flex justify-between items-center'>
+            <div> <h3>User  Details </h3></div>
 
-                {!isEmpty(data) && (
-                    <div>
-                        {/* <div className='flex justify-between items-center'>
-                            <div> <h2>Detail of {data.data.user_details?.username} </h2></div>
-                            <BackButton />
-                            
-                <CustomerTableFilter/>
-                            </div> */}
-                            <div className='flex justify-between items-center'>
-                            <div> <h3> {`${userType?.toUpperCase()} USER DETAIL`} </h3></div>
-                            <div> <BackButton />
-                                {/* <CustomerTableFilter /> */}
-                            </div>
-                        </div>
-                        <div className="flex flex-col xl:flex-row gap-8 my-10">
+            {/* <div> <h3> {`${userType?.toUpperCase()} USER DETAIL`} </h3></div> */}
+            <div> <BackButton />
+                {/* <CustomerTableFilter /> */}
+            </div>
+        </div>
+        <div className="flex flex-col xl:flex-row gap-8 my-10">
 
-                            <div>
-                                <CustomerProfile data={data} />
-                            </div>
+            <div>
+                <CustomerProfile data={data[0]} total={totalData}  />
+            </div>
 
-                            <div className="w-full">
-                                <CustomerStatistic setSelectedCard={setSelected} selected={selected} />
-                                {/* <CurrentSubscription /> */}
-                            </div>
-                        </div>
+            <div className="w-full">
+                <CustomerStatistic setSelectedCard={setSelected} selected={selected} />
+                {/* <CurrentSubscription /> */}
+            </div>
+        </div>
 
-                        <div className="w-full">
-                            <AdaptableCard>
+        <div className="w-full">
+            <AdaptableCard>
 
-                                <CustomersTableTools setSelectedCard={setSelected} selected={selected} />
-                                <Loading loading={loading}>
-                                    <PaymentHistory poolsData={currentSelectedList(selected.key)} selected={selected?.key} />
+                {/* <CustomersTableTools setSelectedCard={setSelected} selected={selected} /> */}
+                <Loading loading={loading}>
+                    <PaymentHistory poolsData={currentSelectedList(selected.key)} selected={selected?.key} />
 
-                                </Loading>
-                                <PaymentMethods />
-                            </AdaptableCard>
-                        </div>
+                </Loading>
+                <PaymentMethods />
+            </AdaptableCard>
+        </div>
 
-                    </div>
+    </div>
 
-                )}
 
-                {isEmpty(data) && (
-                    <div className="h-full flex flex-col items-center justify-center">
-                        <DoubleSidedImage
-                            src="/img/others/img-2.png"
-                            darkModeSrc="/img/others/img-2-dark.png"
-                            alt="No user found!"
-                        />
-                        <h3 className="mt-8">No user found!</h3>
-                    </div>
-                )}
-            </Loading>
-        </Container>
+
+
+</Container>
+ 
+    
     )
 }
 

@@ -50,13 +50,13 @@ const CustomersTableTools = ({ setSelectedCard, selected }) => {
 
     const selectedKey = (data) => {
 
-        if (selected.key === 'Created' || selected.key === 'Joined') return getPoolList(data)
-        if (selected.key === 'Featured') return getFeaturedPoolList(data)
-        if (selected.key === 'History') return getHistoryList(data)
-        if (selected.key === 'Accomplishment') return getAccomplishList(data)
-        if (selected.key === 'Entries') return getEntiesList(data)
-        if (selected.key === 'Payment') return getPaymentPoolList(data)
-        else return getActivePoolList(data)
+        // if (selected.key === 'Created' || selected.key === 'Joined') return getPoolList(data)
+        // if (selected.key === 'Featured') return getFeaturedPoolList(data)
+        // if (selected.key === 'History') return getHistoryList(data)
+        // if (selected.key === 'Accomplishment') return getAccomplishList(data)
+        // if (selected.key === 'Entries') return getEntiesList(data)
+        // if (selected.key === 'Payment') return getPaymentPoolList(data)
+        // else return getActivePoolList(data)
     }
 
     useEffect(() => {

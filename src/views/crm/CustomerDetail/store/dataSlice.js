@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { idea } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import {
     apiGetCrmCustomerDetails,
     apiDeleteCrmCustomer,
@@ -12,6 +13,9 @@ import {
     apiGetEntriesList,
     apiGetPoolStats,
 } from 'services/CrmService'
+const searchParams = new URLSearchParams(location.search);
+const id = searchParams.get('id');
+
 
 export const getCustomer = createAsyncThunk(
     'crmCustomerDetailss/data/getCustomer',
@@ -93,10 +97,11 @@ export const putCustomer = createAsyncThunk(
     }
 )
 export const initialTableData = {
-    isJoined: true,
     pageNumber: 1,
-    pageSize: 25,
-    search: ''
+    pageSize: 10,
+    search: '',
+    userId:id,
+    category_id:1
 
 }
 

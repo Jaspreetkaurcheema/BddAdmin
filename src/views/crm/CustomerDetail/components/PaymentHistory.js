@@ -284,49 +284,54 @@ const IdColumn = ({ row }) => {
 //         </div>
 //     );
 // };
-const PaymentHistory = ({ poolsData = {}, selected = 'Created' }) => {
+const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
-    const [total, setTotal] = useState({})
+    // const [total, setTotal] = useState({})
     let selector = useSelector((state) => state)
+   
 
+    const total= useSelector((state) => state.crmCustomerDetailss.data?.total_rows_count)
     const [data, setData] = useState(null);
-    const id = searchParams.get('user_id');
+    const id = searchParams.get('id');
 
 
-    console.log(poolsData?.data, 'pooool123')
+    console.log(poolsData, 'pooool123')
     useEffect(() => {
 
-        if (selected == 'Victory') {
-            setData(poolsData?.data?.data?.pool_member_stats?.pool_victories_log);
-        } else {
-            setData(poolsData?.data);
-        }
+     setData(poolsData.categoryData)
 
-        if (selected == 'Created' || selected == 'Joined') {
-            setTotal(selector.crmCustomerDetailss?.data.poolList?.total_rows_count)
-        }
-        if (selected == 'Featured') {
-            setTotal(selector.crmCustomerDetailss?.data.featurePoolList?.total_rows_count)
 
-        }
-        if (selected == 'Accomplishment') {
-            setTotal(selector.crmCustomerDetailss.data.AccomplishList?.total_rows_count)
-        }
+        // if (selected == 'Victory') {
+        //     setData(poolsData?.data?.data?.pool_member_stats?.pool_victories_log);
+        // } else {
+        //     setData(poolsData?.data);
+        // }
 
-        if (selected == 'Payment') {
-            setTotal(selector.crmCustomerDetailss.data.paymentList?.total_rows_count)
-        }
+        // if (selected == 'Created' || selected == 'Joined') {
+        //     setTotal(selector.crmCustomerDetailss?.data.poolList?.total_rows_count)
+        // }
+        // if (selected == 'Featured') {
+        //     setTotal(selector.crmCustomerDetailss?.data.featurePoolList?.total_rows_count)
 
-        if (selected == 'Entries') {
-            setTotal(selector.crmCustomerDetailss.data.entriesList?.total_rows_count)
-        }
-        if (selected == 'History') {
-            setTotal(selector.crmCustomerDetailss.data.pools_history?.total_rows_count)
-        }
-        if (selected == 'Active') {
-            setTotal(selector.crmCustomerDetailss.data.activeList?.total_rows_count)
-        }
+        // }
+        // if (selected == 'Accomplishment') {
+        //     setTotal(selector.crmCustomerDetailss.data.AccomplishList?.total_rows_count)
+        // }
+
+        // if (selected == 'Payment') {
+        //     setTotal(selector.crmCustomerDetailss.data.paymentList?.total_rows_count)
+        // }
+
+        // if (selected == 'Entries') {
+        //     setTotal(selector.crmCustomerDetailss.data.entriesList?.total_rows_count)
+        // }
+        // if (selected == 'History') {
+        //     setTotal(selector.crmCustomerDetailss.data.pools_history?.total_rows_count)
+        // }
+        // if (selected == 'Active') {
+        //     setTotal(selector.crmCustomerDetailss.data.activeList?.total_rows_count)
+        // }
     }, [data, selector])
 
     const dispatch = useDispatch()
@@ -361,156 +366,604 @@ const PaymentHistory = ({ poolsData = {}, selected = 'Created' }) => {
             </div>
         )
     }
-    let columns = [
+    let columns = [ ];
 
-        {
-            header: 'ID',
-            accessorKey: 'id',
-            cell: (props) => {
+  
+    if (selected == 'B2b') {
+        columns = [
+            {
+                header: 'ID',
+                accessorKey: 'id',
+                cell: (props) => {
+    
+                    const row = props.row.original;
+    
+                    return <IdColumn row={row} />
+                },
+            },
+            {
+                header: 'company name',
+                accessorKey: 'company_name',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.company_name}</span>
+                        </div>
+                    );
+                },
+            },
+    
+            {
+                header: 'contact person',
+                accessorKey: 'contact_person',
+                cell: (props) => {
+                    const row = props.row.original;
+            
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.contact_person}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'contact email',
+                accessorKey: 'contact_email',
+                cell: (props) => {
+                    const row = props.row.original;
+            
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.contact_email}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'business type',
+                accessorKey: 'business_type',
+                cell: (props) => {
+                    const row = props.row.original;
+            
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.business_type}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'revenue',
+                accessorKey: 'revenue',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.revenue}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'employee count',
+                accessorKey: 'employee_count',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.employee_count}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'industry',
+                accessorKey: 'industry',
+                cell: (props) => {
+                    const row = props.row.original;
+            
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.industry}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'established year',
+                accessorKey: 'established_year',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.established_year}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'additional info',
+                accessorKey: 'additional_info',
+                cell: (props) => {
+                    const row = props.row.original;
+            
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.additional_info}</span>
+                        </div>
+                    );
+                },
+            },
+    
+            // {
+            //     header: 'Action',
+            //     id: 'action',
+            //     cell: (props) => {
+            //         const row = props.row.original
+            //         return (
+            //             <div className="flex items-center"  >
+            //                 <ActionColumn row={props.row.original} />
+            //             </div>
+            //         )
+            //     },
+            // },
+        ]
+        // const planNameIndex = columns.findIndex(column => column.header === 'Created Date');
+        // if (planNameIndex !== -1) {
+        //     columns.splice(planNameIndex, 1);
+        // }
+        // let index = 1;
+        // // Use splice to add the object at the specified index
+        // columns.splice(index, 0, {
+        //     header: 'Pool Owner',
+        //     accessorKey: 'ownerName',
+        //     cell: (props) => {
+        //         const row = props.row.original;
+        //         return (
+        //             <div>
+        //                 <span className="flex items-center">{row.ownerName}</span>
+        //             </div>
+        //         );
+        //     },
+        // },
+        // );
+        // columns.splice(5, 0, {
+        //     header: 'Joining Date',
+        //     accessorKey: 'date',
+        //     cell: (props) => {
+        //         const row = props.row.original;
+        //         return (
+        //             <div className="flex items-center">
+        //                 {row.created_at ? dayjs(row.created_at).format('MM/DD/YYYY') : ''}
 
-                const row = props.row.original;
-
-                return <IdColumn row={row} />
-            },
-        },
-        {
-            header: 'Pool Name',
-            accessorKey: 'name',
-            cell: (props) => {
-                const row = props.row.original;
-                return (
-                    <div>
-                        <span className="flex items-center">{row.name}</span>
-                    </div>
-                );
-            },
-        },
-
-        {
-            header: 'Amount',
-            accessorKey: 'amount',
-            cell: (props) => {
-                const row = props.row.original;
-
-                return (
-                    <div>
-                        <span className="grid justify-items-end " style={{ width: '40%' }}>{row.amount ? "$" + row.amount : "$" + 0}</span>
-                    </div>
-                );
-            },
-        },
-        {
-            header: 'Pool Members',
-            accessorKey: 'number_of_users',
-            cell: (props) => {
-                const row = props.row.original;
-                return (
-                    <div>
-                        <span className="grid justify-items-end " style={{ width: '45%' }}>{row.number_of_users}</span>
-                    </div>
-                );
-            },
-        },
-
-        {
-            header: 'Created Date',
-            accessorKey: 'created_at',
-            cell: (props) => {
-                const row = props.row.original;
-                return (
-                    <div className="flex items-center">
-                        {row.created_at ? dayjs(row.created_at).format('MM/DD/YYYY') : ''}
-                    </div>
-                );
-            },
-        },
-        {
-            header: 'Action',
-            id: 'action',
-            cell: (props) => {
-                const row = props.row.original
-                return (
-                    <div className="flex items-center"  >
-                        <ActionColumn row={props.row.original} />
-                    </div>
-                )
-            },
-        },
-
-    ];
-    if (selected == 'Joined') {
-        const planNameIndex = columns.findIndex(column => column.header === 'Created Date');
-        if (planNameIndex !== -1) {
-            columns.splice(planNameIndex, 1);
-        }
-        let index = 1;
-        // Use splice to add the object at the specified index
-        columns.splice(index, 0, {
-            header: 'Pool Owner',
-            accessorKey: 'ownerName',
-            cell: (props) => {
-                const row = props.row.original;
-                return (
-                    <div>
-                        <span className="flex items-center">{row.ownerName}</span>
-                    </div>
-                );
-            },
-        },
-        );
-        columns.splice(5, 0, {
-            header: 'Joining Date',
-            accessorKey: 'date',
-            cell: (props) => {
-                const row = props.row.original;
-                return (
-                    <div className="flex items-center">
-                        {row.created_at ? dayjs(row.created_at).format('MM/DD/YYYY') : ''}
-
-                    </div>
-                );
-            },
-        },
-        );
+        //             </div>
+        //         );
+        //     },
+        // },
+        // );
 
         // console.log(arrayOfObjects);
 
     }
-    if (selected == 'Active') {
+
+
+    if (selected == 'Finance') {
         columns = [
-
-            // {
-            //     header: 'ID',
-            //     accessorKey: 'id',
-            //     cell: (props) => {
-
-            //         const row = props.row.original;
-
-            //         return <IdColumn row={row} />
-            //     },
-            // },
             {
-                header: 'Pool Name',
-                accessorKey: 'name',
+                header: 'ID',
+                accessorKey: 'id',
+                cell: (props) => {
+    
+                    const row = props.row.original;
+    
+                    return <IdColumn row={row} />
+                },
+            },
+            {
+                header: 'income',
+                accessorKey: 'income',
                 cell: (props) => {
                     const row = props.row.original;
                     return (
-                        <div className="flex items-center">
-                            <Avatar size={28} shape="circle" src={row?.profile_picture} />
-                            <Link
-                                to={`/app/crm/pool-details?id=${row?.id}`}
-                            >
-                                <div className=' ml-2 rtl:mr-2 font-semibold'>
-                                    {row?.name}
-                                </div>
-                            </Link>
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.income}</span>
                         </div>
                     );
                 },
             },
+            {
+                header: 'expenses',
+                accessorKey: 'expenses',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.expenses}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'savings',
+                accessorKey: 'savings',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.savings}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'credit score',
+                accessorKey: 'credit_score',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.credit_score}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'loan amount',
+                accessorKey: 'loan_amount',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.loan_amount}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'loan term months',
+                accessorKey: 'loan_term_months',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.loan_term_months}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'investment amount',
+                accessorKey: 'investment_amount',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.investment_amount}</span>
+                        </div>
+                    );
+                },
+            },
+       
+            {
+                header: 'asset value',
+                accessorKey: 'asset_value',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.asset_value}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'liabilities value',
+                accessorKey: 'liabilities_value',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.liabilities_value}</span>
+                        </div>
+                    );
+                },
+            },
+    
+            {
+                header: 'net worth',
+                accessorKey: 'net_worth',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.net_worth}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'additional info',
+                accessorKey: 'additional_info',
+                cell: (props) => {
+                    const row = props.row.original;
+            
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.additional_info}</span>
+                        </div>
+                    );
+                },
+            },
+    
+            // {
+            //     header: 'Action',
+            //     id: 'action',
+            //     cell: (props) => {
+            //         const row = props.row.original
+            //         return (
+            //             <div className="flex items-center"  >
+            //                 <ActionColumn row={props.row.original} />
+            //             </div>
+            //         )
+            //     },
+            // },
+        ]
+    }
 
+   
+    if (selected == 'Location') {
+        columns = [
 
+            {
+                header: 'ID',
+                accessorKey: 'id',
+                cell: (props) => {
 
+                    const row = props.row.original;
+
+                    return <IdColumn row={row} />
+                },
+            },
+        
+            {
+                header: 'city',
+                accessorKey: 'city',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.city}</span>
+                        </div>
+                    );
+                },
+            },
+       
+
+            {
+                header: 'state',
+                accessorKey: 'state',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.state}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'country',
+                accessorKey: 'country',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.country}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'postal code',
+                accessorKey: 'postal_code',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.postal_code}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'latitude',
+                accessorKey: 'latitude',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.latitude}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'longitude',
+                accessorKey: 'longitude',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.longitude}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'region',
+                accessorKey: 'region',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.region}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'neighborhood',
+                accessorKey: 'neighborhood',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.neighborhood}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'landmark',
+                accessorKey: 'landmark',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.landmark}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'source',
+                accessorKey: 'source',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.source}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'Created At',
+                accessorKey: 'created_at',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div className="flex items-center">
+                            {row.created_at ? dayjs(row.created_at).format('MM/DD/YYYY') : ''}
+                        </div>
+                    );
+                },
+            },
+            // {
+            //     header: 'Status',
+            //     accessorKey: 'is_joined',
+            //     cell: (props) => {
+            //         const row = props.row.original;
+            //         return (
+            //             <div>
+            //                 {row.is_joined ? <Tag prefix prefixClass="bg-emerald-500"> Joined</Tag>
+            //                     :
+            //                     <Tag prefix prefixClass="bg-cyan-500">Available</Tag>
+            //                 }
+            //             </div>
+            //         );
+            //     },
+            // },
+            // {
+            //     header: 'Action',
+            //     id: 'action',
+            //     cell: (props) => {
+            //         const row = props.row.original
+            //         return (
+            //             <div className="flex items-center"  >
+            //                 <ActionColumn row={props.row.original} />
+            //             </div>
+            //         )
+            //     },
+            // },
+
+        ];
+    }
+
+    if (selected == 'Activity') {
+        columns = [
+
+            {
+                header: 'ID',
+                accessorKey: 'id',
+                cell: (props) => {
+
+                    const row = props.row.original;
+
+                    return <IdColumn row={row} />
+                },
+            },
+            {
+                header: 'app category id',
+                accessorKey: 'app_category_id',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="grid justify-items-end " style={{ width: '45%' }}>{row.app_category_id}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'app name',
+                accessorKey: 'app_name',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.app_name}</span>
+                        </div>
+                    );
+                },
+            },
+                {
+                header: 'start_time',
+                accessorKey: 'start_time',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.start_time}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'end time',
+                accessorKey: 'end_time',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.end_time}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                header: 'total usage',
+                accessorKey: 'total_usage',
+                cell: (props) => {
+                    const row = props.row.original;
+                    return (
+                        <div>
+                            <span className="flex items-center">{row.total_usage}</span>
+                        </div>
+                    );
+                },
+            },
             // {
             //     header: 'Amount',
             //     accessorKey: 'amount',
@@ -524,300 +977,16 @@ const PaymentHistory = ({ poolsData = {}, selected = 'Created' }) => {
             //         );
             //     },
             // },
-            {
-                header: 'Pool Owner',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            <Avatar size={28} shape="circle" src={row?.pool_owner_profile_picture} />
-                            <Link
-                                to={`/app/crm/pool-details?id=${row?.id}`}
-                            >
-                                <div className=' ml-2 rtl:mr-2 font-semibold'>
-                                    {row?.pool_owner_name}
-                                </div>
-                            </Link>
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Pool Event',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            <Avatar size={28} shape="circle" src={`https://api.kingpool.app/images/sports/${row?.pool_event?.split(',')?.[3]}`} />
-                            <div style={{ marginLeft: '10px' }}>
-                                <div className='font-light'>{row?.pool_event?.split(',')?.[0]}</div>
-                                <div className='font-normal'>{row?.pool_event?.split(',')?.[1]}</div>
-                                <div className='font-bold'>{row?.pool_event?.split(',')?.[2]}</div>
-                            </div>
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Members Count',
-                accessorKey: 'members_count',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div>
-                            <span className="flex items-center">{row.pool_members}</span>
-                        </div>
-                    );
-                },
-            },
-
-            {
-                header: 'Created At',
-                accessorKey: 'created_at',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            {row.created_at ? dayjs(row.created_at).format('MM/DD/YYYY') : ''}
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Status',
-                accessorKey: 'is_joined',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div>
-                            {row?.status === 'ADMIN' && <Tag prefix prefixClass="bg-cyan-500">{row.status}</Tag>}
-                            {row?.status === 'JOINED' && <Tag prefix prefixClass="bg-emerald-500">{row.status}</Tag>}
-                            {row?.status === 'REQUESTED' && <Tag prefix prefixClass="bg-yellow-500">{row.status}</Tag>}
-                        </div>
-                    );
-                },
-            },
-
-            {
-                header: 'Action',
-                id: 'action',
-                cell: (props) => {
-                    const row = props.row.original
-                    return (
-                        <div className="flex items-center"  >
-                            <ActionColumn row={props.row.original} />
-                        </div>
-                    )
-                },
-            },
-
-        ];
-    }
-    if (selected == 'Featured') {
-        columns = [
-
-            // {
-            //     header: 'ID',
-            //     accessorKey: 'id',
-            //     cell: (props) => {
-
-            //         const row = props.row.original;
-
-            //         return <IdColumn row={row} />
-            //     },
-            // },
-            {
-                header: 'Pool Name',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            <Avatar size={28} shape="circle" src={row?.profile_picture} />
-                            <Link
-                                to={`/app/crm/pool-details?id=${row?.id}`}
-                            >
-                                <div className=' ml-2 rtl:mr-2 font-semibold'>
-                                    {row?.name}
-                                </div>
-                            </Link>
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Pool Owner',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            <Avatar size={28} shape="circle" src={row?.pool_owner_profile_picture} />
-                            <Link
-                                to={`/app/crm/pool-details?id=${row?.id}`}
-                            >
-                                <div className=' ml-2 rtl:mr-2 font-semibold'>
-                                    {row?.pool_owner_name}
-                                </div>
-                            </Link>
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Pool Event',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            <Avatar size={28} shape="circle" src={`https://api.kingpool.app/images/sports/${row?.pool_event?.split(',')?.[3]}`} />
-                            <div style={{ marginLeft: '10px' }}>
-                                <div className='font-light'>{row?.pool_event?.split(',')?.[0]}</div>
-                                <div className='font-normal'>{row?.pool_event?.split(',')?.[1]}</div>
-                                <div className='font-bold'>{row?.pool_event?.split(',')?.[2]}</div>
-                            </div>
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Members Count',
-                accessorKey: 'members_count',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div>
-                            <span className="flex items-center">{row.pool_members}</span>
-                        </div>
-                    );
-                },
-            },
-            // {
-            //     header: 'Entries Count',
-            //     accessorKey: 'members_count',
-            //     cell: (props) => {
-            //         const row = props.row.original;
-            //         return (
-            //             <div>
-            //                 <span className="flex items-center">{row.pool_entries}</span>
-            //             </div>
-            //         );
-            //     },
-            // },
-
-            // {
-            //     header: 'Amount',
-            //     accessorKey: 'amount',
-            //     cell: (props) => {
-            //         const row = props.row.original;
-
-            //         return (
-            //             <div>
-            //                 <span className="grid justify-items-end " style={{ width: '40%' }}>{row.amount ? "$" + row.amount : "$" + 0}</span>
-            //             </div>
-            //         );
-            //     },
-            // },
 
 
             {
                 header: 'Created At',
-                accessorKey: 'created_at',
+                accessorKey: 'start_time',
                 cell: (props) => {
                     const row = props.row.original;
                     return (
                         <div className="flex items-center">
-                            {row.created_at ? dayjs(row.created_at).format('MM/DD/YYYY') : ''}
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Status',
-                accessorKey: 'is_joined',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div>
-                            {row.is_joined ? <Tag prefix prefixClass="bg-emerald-500"> Joined</Tag>
-                                :
-                                <Tag prefix prefixClass="bg-cyan-500">Available</Tag>
-                            }
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Action',
-                id: 'action',
-                cell: (props) => {
-                    const row = props.row.original
-                    return (
-                        <div className="flex items-center"  >
-                            <ActionColumn row={props.row.original} />
-                        </div>
-                    )
-                },
-            },
-
-        ];
-    }
-    if (selected == 'Accomplishment') {
-        columns = [
-
-            {
-                header: 'icon',
-                accessorKey: 'icon',
-                cell: (props) => {
-
-                    const row = props.row.original;
-
-                    return (<div className="flex items-center">
-                        {row?.icon ? <Avatar size={28} shape="circle" src={row?.icon} /> : <></>}
-
-
-                    </div>)
-                },
-            },
-            {
-                header: 'message',
-                accessorKey: 'message',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div>
-                            <span className="flex items-center">{row.message}</span>
-                        </div>
-                    );
-                },
-            },
-
-            // {
-            //     header: 'Amount',
-            //     accessorKey: 'amount',
-            //     cell: (props) => {
-            //         const row = props.row.original;
-
-            //         return (
-            //             <div>
-            //                 <span className="grid justify-items-end " style={{ width: '40%' }}>{row.amount ? "$" + row.amount : "$" + 0}</span>
-            //             </div>
-            //         );
-            //     },
-            // },
-
-
-            {
-                header: 'Created At',
-                accessorKey: 'created_at',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            {row.created_at ? dayjs(row.created_at).format('MM/DD/YYYY') : ''}
+                            {row.start_time ? dayjs(row.start_time).format('MM/DD/YYYY') : ''}
                         </div>
                     );
                 },
@@ -826,52 +995,80 @@ const PaymentHistory = ({ poolsData = {}, selected = 'Created' }) => {
 
         ];
     }
-    if (selected == 'Payment') {
+    // "social_media_type_id": "1",
+    // "name": "Jaspreet",
+    // "email": "jas@yopmail.com",
+    // "gender": "Female",
+    // "location": "chandigarh",
+    // "updated_at": "2024-07-09T10:05:52.000Z",
+    // "profile_url": "https://dummy.com/372819389498306",
+    // "followers_count": "15",
+    // "following_count": "5",
+    // "posts_count": "3",
+    // "likes_count": "45",
+    // "friends_count": "2",
+    // "description": "fgdfg",
+    // "favourites_count": "12",
+    // "follow_request_sent": "23",
+    if (selected == 'Social') {
         columns =
             [
-
                 {
-                    header: 'transactionid',
-                    accessorKey: 'transaction_id',
+                    header: 'ID',
+                    accessorKey: 'id',
                     cell: (props) => {
+    
                         const row = props.row.original;
-                        return (
-                            row.receipt_url ? <div>
-                                <a href={row.receipt_url} class="font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
-                                    {row.transaction_id}
-                                </a>
-
-                            </div> : <div>
-                                {/* <a href={row.receipt_url} class="font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer"> */}
-                                {row.transaction_id}
-                                {/* </a> */}
-
-                            </div>
-
-                        );
+    
+                        return <IdColumn row={row} />
                     },
                 },
+
                 {
-                    header: 'currency',
-                    accessorKey: 'currency',
+                    header: 'name',
+                    accessorKey: 'name',
                     cell: (props) => {
                         const row = props.row.original;
                         return (
                             <div>
-                                <span className="flex items-center">{row.currency}</span>
+                                <span className="flex items-center">{row.name}</span>
                             </div>
                         );
                     },
                 },
 
                 {
-                    header: 'payment method',
-                    accessorKey: 'payment_method',
+                    header: 'email',
+                    accessorKey: 'email',
                     cell: (props) => {
                         const row = props.row.original;
                         return (
                             <div>
-                                <span className="flex items-center">{row.payment_method}</span>
+                                <span className="flex items-center">{row.email}</span>
+                            </div>
+                        );
+                    },
+                },
+                {
+                    header: 'gender',
+                    accessorKey: 'gender',
+                    cell: (props) => {
+                        const row = props.row.original;
+                        return (
+                            <div>
+                                <span className="flex items-center">{row.gender}</span>
+                            </div>
+                        );
+                    },
+                },
+                {
+                    header: 'location',
+                    accessorKey: 'location',
+                    cell: (props) => {
+                        const row = props.row.original;
+                        return (
+                            <div>
+                                <span className="flex items-center">{row.location}</span>
                             </div>
                         );
                     },
@@ -980,405 +1177,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'Created' }) => {
             ]
 
     }
-    if (selected == 'Entries') {
-        columns = [
-
-            // {
-            //     header: 'User ID',
-            //     accessorKey: 'id',
-            //     cell: (props) => {
-            //         const row = props?.row?.original
-            //         return (
-            //             <div>
-            //                 <span className="cursor-pointer">{row?.
-            //                     user_id}</span>
-            //             </div>
-            //         )
-            //     },
-            // },
-
-
-            {
-                header: 'Name',
-                accessorKey: 'poolEntry',
-                cell: (props) => {
-                    const row = props?.row?.original
-                    return (
-                        <div>
-                            <span className="flex items-center">{row?.name
-                            }</span>
-                        </div>
-                    )
-                },
-            },
-
-            {
-                header: 'Pool Name',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            <Avatar size={28} shape="circle" src={row?.pool_profile_picture} />
-                            <Link
-                                to={`/app/crm/pool-details?id=${row?.id}`}
-                            >
-                                <div className=' ml-2 rtl:mr-2 font-semibold'>
-                                    {row?.pool_name}
-                                </div>
-                            </Link>
-                        </div>
-                    );
-                },
-            },
-
-            {
-                header: 'Pool Owner',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            <Avatar size={28} shape="circle" src={row?.pool_owner_profile_picture} />
-                            <Link
-                                to={`/app/crm/pool-details?id=${row?.id}`}
-                            >
-                                <div className=' ml-2 rtl:mr-2 font-semibold'>
-                                    {row?.pool_owner_name}
-                                </div>
-                            </Link>
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Pool Event',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            <Avatar size={28} shape="circle" src={`https://api.kingpool.app/images/sports/${row?.pool_event?.split(',')?.[3]}`} />
-                            <div style={{ marginLeft: '10px' }}>
-                                <div className='font-light'>{row?.pool_event?.split(',')?.[0]}</div>
-                                <div className='font-normal'>{row?.pool_event?.split(',')?.[1]}</div>
-                                <div className='font-bold'>{row?.pool_event?.split(',')?.[2]}</div>
-                            </div>
-                        </div>
-                    );
-                },
-            },
-
-            // {
-            //     header: 'Amount',
-            //     accessorKey: 'amount',
-            //     cell: (props) => {
-            //         const row = props?.row?.original
-            //         return (
-            //             <div>
-            //                 <span className="grid justify-items-end " style={{ width: '75%' }}>{row?.amount ? "$" + row?.amount : "$" + 0
-            //                 }</span>
-            //             </div>
-            //         )
-            //     },
-            // },
-            // {
-            //     header: 'Tie breaker points',
-            //     accessorKey: 'predicted_total_championship_points',
-            //     cell: (props) => {
-            //         const row = props?.row?.original
-            //         return (
-            //             <div>
-            //                 <span className="grid justify-items-end " style={{ width: '75%' }}>{row?.predicted_total_championship_points ? row?.predicted_total_championship_points : 0
-            //                 }</span>
-            //             </div>
-            //         )
-            //     },
-            // },
-            // {
-            //     header: 'predicted winner team id',
-            //     accessorKey: 'predicted_championship_winner_id',
-            //     cell: (props) => {
-            //         const row = props?.row?.original
-            //         return (
-            //             <div>
-            //                 <span className="grid justify-items-end " style={{ width: '95%' }}>{row?.predicted_championship_winner_id ? row?.predicted_championship_winner_id : 0
-            //                 }</span>
-            //             </div>
-            //         )
-            //     },
-            // },
-
-            // {
-            //     header: 'Predicted Winner team',
-            //     accessorKey: 'displayName',
-            //     cell: (props) => {
-            //         const row = props?.row?.original
-            //         return (
-            //             <div className="items-center flex justify-items-center flex-col ml-3 ">
-            //                 {row?.logo ? <Avatar size={28} shape="circle" src={row?.logo} /> : <></>}
-            //                 <div className='ml-2 rtl:mr-2'></div>
-            //                 <div className='font-semibold'>
-            //                     {row?.displayName}
-            //                 </div>
-            //             </div>
-            //         )
-            //     },
-            // },
-            {
-                header: 'Winner',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            {row?.winner_team_logo && <Avatar size={28} shape="circle" src={row?.winner_team_logo} />}
-                            <div style={{ marginLeft: '10px' }}>
-                                <div className='font-light'>{row?.winner_team_name}</div>
-                            </div>
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Tie breaker points',
-                accessorKey: 'lastOnline',
-                cell: (props) => {
-                    const row = props.row.original
-                    return (
-                        <div className="flex items-center">
-                            {row?.predicted_total_championship_points}
-                        </div>
-                    )
-                },
-            },
-            {
-                header: 'Created At',
-                accessorKey: 'lastOnline',
-                cell: (props) => {
-                    const row = props.row.original
-                    return (
-                        <div className="flex items-center">
-                            {dayjs(row.created_at).format('MM/DD/YYYY')}
-                        </div>
-                    )
-                },
-            },
-            {
-                header: 'Action',
-                id: 'action',
-                cell: (props) => {
-                    // const row = props.row.original
-                    return (
-                        <div className="flex items-center"  >
-                            <ActionColumn row={props.row.original} />
-                        </div>
-                    )
-                },
-            },
-
-        ]
-    }
-
-    if (selected == 'Victory') {
-        columns = [
-            {
-                header: 'Pool Entry',
-                accessorKey: 'poolEntry',
-                cell: (props) => {
-                    const row = props?.row?.original
-                    return (
-                        <div>
-                            <span className="flex items-center">{row?.pool_entry_name
-                            }</span>
-                        </div>
-                    )
-                },
-            },
-            {
-                header: 'Pool',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            <Avatar size={28} shape="circle" src={row?.pool_image} />
-                            <Link
-                                to={`/app/crm/pool-details?id=${row?.pool_id}`}
-                            >
-                                <div className=' ml-2 rtl:mr-2 font-semibold'>
-                                    {row?.pool_name}
-                                </div>
-                            </Link>
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Pool Owner',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            <Avatar size={28} shape="circle" src={row?.pool_owner_profile_picture} />
-                            <Link
-                                to={`/app/crm/pool-details?id=${row?.id}`}
-                            >
-                                <div className=' ml-2 rtl:mr-2 font-semibold'>
-                                    {row?.pool_owner_name}
-                                </div>
-                            </Link>
-                        </div>
-                    );
-                },
-            },
-
-            {
-                header: 'Pool Event',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            <Avatar size={28} shape="circle" src={`https://api.kingpool.app/images/sports/${row?.sport_icon}`} />
-                            <div style={{ marginLeft: '10px' }}>
-                                <div className='font-light'>{row?.sport_name}</div>
-                                <div className='font-normal'>{row?.pool_event_name}</div>
-                                <div className='font-bold'>{row?.pool_type}</div>
-                            </div>
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Winner',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            <Avatar size={28} shape="circle" src={row?.winner_pic} />
-                            <div style={{ marginLeft: '10px' }}>
-                                <div className='font-light'>{row?.winner_team_name}</div>
-                            </div>
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Total Points',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            <div className='font-light'>{row?.total_points}</div>
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Created At',
-                accessorKey: 'created_at',
-                cell: (props) => {
-                    const row = props.row.original
-                    return (
-                        <div className="flex items-center">
-                            {dayjs(row.created_at
-                            ).format('MM/DD/YYYY')}
-                        </div>
-                    )
-                },
-            },
-        ]
-    }
-
-    if (selected == 'History') {
-        columns = [
-            {
-                header: 'Pool',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            <Avatar size={28} shape="circle" src={row?.profile_picture} />
-                            <Link
-                                to={`/app/crm/pool-details?id=${row?.id}`}
-                            >
-                                <div className=' ml-2 rtl:mr-2 font-semibold'>
-                                    {row?.name}
-                                </div>
-                            </Link>
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Pool Owner',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            <Avatar size={28} shape="circle" src={row?.pool_owner_profile_picture} />
-                            <Link
-                                to={`/app/crm/pool-details?id=${row?.id}`}
-                            >
-                                <div className=' ml-2 rtl:mr-2 font-semibold'>
-                                    {row?.pool_owner_name}
-                                </div>
-                            </Link>
-                        </div>
-                    );
-                },
-            },
-
-            {
-                header: 'Pool Event',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            <Avatar size={28} shape="circle" src={`https://api.kingpool.app/images/sports/${row?.pool_event?.sport?.icon}`} />
-                            <div style={{ marginLeft: '10px' }}>
-                                <div className='font-light'>{row?.pool_event?.sport?.name}</div>
-                                <div className='font-normal'>{row?.pool_event?.name}</div>
-                                <div className='font-bold'>{row?.pool_event?.pool_type?.name}</div>
-                            </div>
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Members Count',
-                accessorKey: 'name',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                             <span className="flex items-center">{row?.pool_members_count
-                            }</span>
-                        </div>
-                    );
-                },
-            },
-            {
-                header: 'Created At',
-                accessorKey: 'created_at',
-                cell: (props) => {
-                    const row = props.row.original;
-                    return (
-                        <div className="flex items-center">
-                            {row.created_at ? dayjs(row.created_at).format('MM/DD/YYYY') : ''}
-                        </div>
-                    );
-                },
-            },
-        ]
-    }
+   
     // const data = useSelector((state) => state.crmCustomerDetails?.data.poolList?.data)
 
 
@@ -1389,7 +1188,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'Created' }) => {
 
     const loading = useSelector((state) => state.crmCustomerDetailss?.data.loading2)
 
-    const { pageNumber, pageSize, isJoined, userId, search } = useSelector(
+    const { pageNumber, pageSize,  userId, search } = useSelector(
         (state) => state.crmCustomerDetailss?.data.tableData
     )
 
@@ -1399,7 +1198,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'Created' }) => {
     console.log(pageNumber, pageSize, search, total, selected, 'set useeffedt')
 
     const tableData = useMemo(
-        () => ({ pageNumber, pageSize, search, isJoined: true, userId: id }),
+        () => ({ pageNumber, pageSize, search, userId: id }),
         [pageNumber, pageSize, search, total, selected]
     )
     const onPaginationChange = (page) => {
@@ -1408,31 +1207,33 @@ const PaymentHistory = ({ poolsData = {}, selected = 'Created' }) => {
         newTableData.pageNumber = page
         dispatch(setTableData(newTableData))
         console.log(newTableData, 'newTableData')
-        if (selected == 'Created' || selected == 'Joined') {
-            dispatch(getPoolList({ pageNumber: page, pageSize, search, isJoined: (selected == 'Created') ? true : false, userId: id }))
-        }
-        if (selected == 'Featured') {
-            dispatch(getFeaturedPoolList({ pageNumber: page, pageSize, search, userId: id }))
+        // if (selected == 'B2b' ) {
+        //     dispatch(getActivePoolList({ pageNumber: page, pageSize, search, userId: id , category_id:1}))
 
-        }
-        if (selected == 'Active') {
-            dispatch(getActivePoolList({ pageNumber: page, pageSize, search, userId: id }))
+           
+        // }
+        // if (selected == 'Featured') {
+        //     dispatch(getFeaturedPoolList({ pageNumber: page, pageSize, search, userId: id }))
+
+        // }
+        // if (selected == 'Active') {
+        //     dispatch(getActivePoolList({ pageNumber: page, pageSize, search, userId: id , category_id:2}))
 
 
-        }
-        if (selected == 'Accomplishment') {
+        // }
+        // if (selected == 'Accomplishment') {
 
-            dispatch(getAccomplishList({ pageNumber: page, pageSize, userId: id }))
-        }
-        if (selected == 'History') {
-            dispatch(getHistoryList({ pageNumber, pageSize, userId: id, filter_type: filter_type }))
-        }
-        if (selected == 'Payment') {
-            dispatch(getPaymentPoolList({ pageNumber: page, pageSize, userId: id, search: '', filterType: 1, paymentType }))
-        }
-        if (selected == 'Victory') {
-            dispatch(getPoolStats({ id: id }))
-        }
+        //     dispatch(getAccomplishList({ pageNumber: page, pageSize, userId: id }))
+        // }
+        // if (selected == 'History') {
+        //     dispatch(getHistoryList({ pageNumber, pageSize, userId: id, filter_type: filter_type }))
+        // }
+        // if (selected == 'Payment') {
+        //     dispatch(getPaymentPoolList({ pageNumber: page, pageSize, userId: id, search: '', filterType: 1, paymentType }))
+        // }
+        // if (selected == 'Victory') {
+        //     dispatch(getPoolStats({ id: id }))
+        // }
 
     }
 
@@ -1448,7 +1249,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'Created' }) => {
         // newTableData. = 
         dispatch(setTableData(newTableData))
     }
-    console.log(loading, 'loadingloadingloading')
+    console.log(data, 'loadingloadingloading')
     return (
         <>
             {!!(data != null && (data.length || data == undefined)) ?
