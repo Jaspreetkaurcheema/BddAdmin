@@ -13,8 +13,7 @@ import {
     apiGetEntriesList,
     apiGetPoolStats,
 } from 'services/CrmService'
-const searchParams = new URLSearchParams(location.search);
-const id = searchParams.get('id');
+
 
 
 export const getCustomer = createAsyncThunk(
@@ -100,7 +99,7 @@ export const initialTableData = {
     pageNumber: 1,
     pageSize: 10,
     search: '',
-    userId:id,
+  
     category_id:1
 
 }
