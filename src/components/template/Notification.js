@@ -158,8 +158,8 @@ export const Notification = ({ className }) => {
         [notificationList]
     )
 
-    return (
-        <Dropdown
+    return (<></> )
+        {/* <Dropdown
             renderTitle={
                 <NotificationToggle
                     dot={unreadNotification}
@@ -259,8 +259,8 @@ export const Notification = ({ className }) => {
                     </Link>
                 </div>
             </Dropdown.Item>
-        </Dropdown>
-    )
+        </Dropdown> */}
+   
 }
 
 export default withHeaderItem(Notification)

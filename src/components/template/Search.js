@@ -145,7 +145,7 @@ export const Search = ({ className }) => {
 
     return (
         <>
-            <div
+            {/* <div
                 className={classNames(className, 'text-2xl')}
                 onClick={handleSearchOpen}
             >
@@ -198,7 +198,7 @@ export const Search = ({ className }) => {
                         )}
                     </div>
                 </div>
-            </Dialog>
+            </Dialog> */}
         </>
     )
 }
