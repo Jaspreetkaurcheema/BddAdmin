@@ -130,15 +130,15 @@ const appsRoute = [
     //         header: 'Business Faqs',
     //     },
     // },
-    // {
-    //     key: 'appsFinance.marketPlace',
-    //     path: `${APP_PREFIX_PATH}/finance/marketPlace`,
-    //     component: React.lazy(() => import('views/crm/Subscriptions')),
-    //     authority: [ADMIN],
-    //     // meta: {
-    //     //     header: 'Subscription',
-    //     // },
-    // },
+    {
+        key: 'appsFinance.marketPlace',
+        path: `${APP_PREFIX_PATH}/finance/marketPlace`,
+        component: React.lazy(() => import('views/crm/Subscriptions')),
+        authority: [ADMIN],
+        // meta: {
+        //     header: 'Subscription',
+        // },
+    },
     // {
     //     key: 'appsFinance.promo',
     //     path: `${APP_PREFIX_PATH}/finance/promo`,
