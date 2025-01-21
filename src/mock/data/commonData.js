@@ -76,7 +76,7 @@ export const notificationListData = [
 export const searchQueryPoolData = [
     {
         title: 'Project Dashboard',
-        url: '/app/project/dashboard',
+        url: '/app/dashboard',
         icon: 'project',
         category: 'Project',
         categoryTitle: 'Apps',

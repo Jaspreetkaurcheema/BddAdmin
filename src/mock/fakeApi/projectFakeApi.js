@@ -1,7 +1,7 @@
 import wildCardSearch from 'utils/wildCardSearch'
 
 export default function projectFakeApi(server, apiPrefix) {
-    server.get(`${apiPrefix}/project/dashboard`, (schema) => {
+    server.get(`${apiPrefix}/dashboard`, (schema) => {
         return schema.db.projectDashboardData[0]
     })
 

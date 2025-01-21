@@ -40,11 +40,15 @@ const StatisticCard = (props) => {
                             size={avatarSize}
                             icon={icon}
                         /> */}
-                        <div>
+                        <div className='text-center'>
                             <p className='whitespace-nowrap overflow-hidden overflow-ellipsis min-w-[98px] max-w-full lg:max-w-[100px]  xl:max-w-[125px]  2xl:max-w-[200px]'>{label}</p>
-                            <h3 className={(active ? '  text-white ' : '') + ' cursor-pointer'} style={{ textAlign: 'center' }}> {value}
+                        <div>
+                            <h5 className={(active ? '  text-white ' : '') + ' cursor-pointer'} style={{ textAlign: 'center' }}> {value }
+                                
+                           <span className='ms-3'> Records</span>
+                            </h5> 
+                            </div>
 
-                            </h3>
                         </div>
                     </div>
                     {/* <GrowShrinkTag value={growthRate} suffix="%" /> */}
@@ -163,57 +167,13 @@ const CustomerStatistic = ({ setSelectedCard, selected }) => {
     return (
         // <div className="grid  grid-cols-1 sm:grid-cols-1 grid-rows-2 md:grid-cols-3 lg:grid-cols-3   xl:grid-cols-3  2xl:grid-cols-3 gap-4">
         <>
-            {data3 ?
-                <div className="grid  grid-cols-1 sm:grid-cols-1 grid-rows-2 md:grid-cols-3 lg:grid-cols-3   xl:grid-cols-3  2xl:grid-cols-3 gap-4">
-
-                    <StatisticCard
-                        active={selected?.key == 'B2b'}
-                        icon={<HiOutlineUserGroup />}
-                        avatarClass="!bg-indigo-600"
-                        label="B2b"
-                        value={count?.b2btotalRecord || 0}
-                        onClick={() => handleB2bClick('B2b')}
-                    />
-
-                    {/* <StatisticCard
-                        active={selected?.key == 'Joined'}
-                        icon={<HiOutlineUsers />}
-                        avatarClass="!bg-blue-500"
-                        label="Joined pools"
-                        value={data2?.length || 0}
-                        onClick={() => handleJoinedPoolsClick('Joined')}
-                    /> */}
-
-
-
-
-
-                    {/* <StatisticCard
-                        // active={selected?.key === 'Payments' }
-                        icon={<HiOutlineUsers />}
-                        avatarClass="!bg-blue-500"
-                        label={"Funds Collection"}
-                        value={selected?.key === 'Payments' ? (amount ? "$" + amount : 0) : (selected?.key === 'Created' ? ((data1?.length > 0 && data1[0]?.totalfunds) ? "$" + data1[0]?.totalfunds : 0) : ((data2?.length > 0 && data2[0].totalfund) ? "$" + data2[0].totalfunds : 0))}
-                    // value={selected === 'Created' ? (data1?.length >0 ? "$" + data1[0]?.totalfunds : 0 ): data2?.length>0 ?"$" + data2[0].totalfunds : 0 }
-                    // onClick={handlePaymentsClick}
-                    />  */}
-                    {/* <StatisticCard
-                     // active={selectedPool === 'payments'}
-                     icon={<HiOutlineUsers />}
-                     avatarClass="!bg-blue-500"
-                     label="Total Funds"
-                     value={amount? amount+" $":0
-                     }
-                 // onClick={handlePaymentsClick}
-                 /> */}
-
-                </div> :
+            
                 <div className="grid  grid-cols-1 sm:grid-cols-1 grid-rows-2 md:grid-cols-3 lg:grid-cols-3   xl:grid-cols-5  2xl:grid-cols-5 gap-4">
      <StatisticCard
                         active={selected?.key == 'B2b'}
                         icon={<HiOutlineUserGroup />}
                         avatarClass="!bg-indigo-600"
-                        label="B2b Data"
+                        label="B2B Data"
                         value={count?.b2btotalRecord || 0}
                         onClick={() => handleClick('B2b', 1)}
                     />
@@ -221,7 +181,7 @@ const CustomerStatistic = ({ setSelectedCard, selected }) => {
                         active={selected?.key == 'Finance'}
                         icon={<HiOutlineUsers />}
                         avatarClass="!bg-blue-500"
-                        label="Finance data"
+                        label="Finance Data"
                         value={count.fintotalRecord || 0}
                         onClick={() => handleClick('Finance', 2)}
 
@@ -321,7 +281,7 @@ const CustomerStatistic = ({ setSelectedCard, selected }) => {
 
                 </div>
 
-            }
+            
         </>
     )
 }

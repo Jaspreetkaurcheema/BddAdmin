@@ -94,7 +94,7 @@ console.log(values,'valuesvalues')
                     name="username"
                     placeholder="User Name"
                     component={Input}
-                    disabled={Input}           
+                    // disabled={Input}           
                     prefix={<HiUserCircle className="text-xl" />}
                     
                 />

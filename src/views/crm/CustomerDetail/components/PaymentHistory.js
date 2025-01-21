@@ -289,95 +289,36 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
     const searchParams = new URLSearchParams(location.search);
     // const [total, setTotal] = useState({})
     let selector = useSelector((state) => state)
-   
 
-    const total= useSelector((state) => state.crmCustomerDetailss.data?.total_rows_count)
+
+    const total = useSelector((state) => state.crmCustomerDetailss.data.activeList.total_rows_count
+
+    )
     const [data, setData] = useState(null);
     const id = searchParams.get('id');
 
 
-    console.log(poolsData, 'pooool123')
+ 
     useEffect(() => {
 
-     setData(poolsData.categoryData)
+        setData(poolsData.categoryData)
 
-
-        // if (selected == 'Victory') {
-        //     setData(poolsData?.data?.data?.pool_member_stats?.pool_victories_log);
-        // } else {
-        //     setData(poolsData?.data);
-        // }
-
-        // if (selected == 'Created' || selected == 'Joined') {
-        //     setTotal(selector.crmCustomerDetailss?.data.poolList?.total_rows_count)
-        // }
-        // if (selected == 'Featured') {
-        //     setTotal(selector.crmCustomerDetailss?.data.featurePoolList?.total_rows_count)
-
-        // }
-        // if (selected == 'Accomplishment') {
-        //     setTotal(selector.crmCustomerDetailss.data.AccomplishList?.total_rows_count)
-        // }
-
-        // if (selected == 'Payment') {
-        //     setTotal(selector.crmCustomerDetailss.data.paymentList?.total_rows_count)
-        // }
-
-        // if (selected == 'Entries') {
-        //     setTotal(selector.crmCustomerDetailss.data.entriesList?.total_rows_count)
-        // }
-        // if (selected == 'History') {
-        //     setTotal(selector.crmCustomerDetailss.data.pools_history?.total_rows_count)
-        // }
-        // if (selected == 'Active') {
-        //     setTotal(selector.crmCustomerDetailss.data.activeList?.total_rows_count)
-        // }
     }, [data, selector])
 
     const dispatch = useDispatch()
-    const ActionColumn = ({ row }) => {
-        const { textTheme } = useThemeClass()
-        const dispatch = useDispatch()
-        const navigate = useNavigate()
+
+    let columns = [];
 
 
-
-        const onView = useCallback(() => {
-            navigate(`/app/crm/pool-details?id=${row?.id}`)
-        }, [navigate, row])
-        return (
-            <div className="flex justify-end ">
-
-                <Tooltip title="View">
-                    <span
-                        className={`cursor-pointer p-2 text-lg hover:${textTheme}`}
-                        onClick={onView}
-                    >
-                        <HiOutlineEye />
-
-                    </span>
-                </Tooltip>
-                {/* <div
-                className={`${textTheme} cursor-pointer p-1 select-none font-semibold whitespace-nowrap`}
-            onClick={onEdit}
-            >
-                Edit
-            </div> */}
-            </div>
-        )
-    }
-    let columns = [ ];
-
-  
     if (selected == 'B2b') {
         columns = [
             {
                 header: 'ID',
                 accessorKey: 'id',
                 cell: (props) => {
-    
+
                     const row = props.row.original;
-    
+
                     return <IdColumn row={row} />
                 },
             },
@@ -393,13 +334,13 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
                     );
                 },
             },
-    
+
             {
                 header: 'contact person',
                 accessorKey: 'contact_person',
                 cell: (props) => {
                     const row = props.row.original;
-            
+
                     return (
                         <div>
                             <span className="flex items-center">{row.contact_person}</span>
@@ -412,7 +353,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
                 accessorKey: 'contact_email',
                 cell: (props) => {
                     const row = props.row.original;
-            
+
                     return (
                         <div>
                             <span className="flex items-center">{row.contact_email}</span>
@@ -425,7 +366,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
                 accessorKey: 'business_type',
                 cell: (props) => {
                     const row = props.row.original;
-            
+
                     return (
                         <div>
                             <span className="flex items-center">{row.business_type}</span>
@@ -462,7 +403,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
                 accessorKey: 'industry',
                 cell: (props) => {
                     const row = props.row.original;
-            
+
                     return (
                         <div>
                             <span className="flex items-center">{row.industry}</span>
@@ -487,7 +428,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
                 accessorKey: 'additional_info',
                 cell: (props) => {
                     const row = props.row.original;
-            
+
                     return (
                         <div>
                             <span className="flex items-center">{row.additional_info}</span>
@@ -495,7 +436,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
                     );
                 },
             },
-    
+
             // {
             //     header: 'Action',
             //     id: 'action',
@@ -554,9 +495,9 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
                 header: 'ID',
                 accessorKey: 'id',
                 cell: (props) => {
-    
+
                     const row = props.row.original;
-    
+
                     return <IdColumn row={row} />
                 },
             },
@@ -644,7 +585,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
                     );
                 },
             },
-       
+
             {
                 header: 'asset value',
                 accessorKey: 'asset_value',
@@ -669,7 +610,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
                     );
                 },
             },
-    
+
             {
                 header: 'net worth',
                 accessorKey: 'net_worth',
@@ -687,7 +628,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
                 accessorKey: 'additional_info',
                 cell: (props) => {
                     const row = props.row.original;
-            
+
                     return (
                         <div>
                             <span className="flex items-center">{row.additional_info}</span>
@@ -695,7 +636,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
                     );
                 },
             },
-    
+
             // {
             //     header: 'Action',
             //     id: 'action',
@@ -711,7 +652,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
         ]
     }
 
-   
+
     if (selected == 'Location') {
         columns = [
 
@@ -725,7 +666,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
                     return <IdColumn row={row} />
                 },
             },
-        
+
             {
                 header: 'city',
                 accessorKey: 'city',
@@ -738,7 +679,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
                     );
                 },
             },
-       
+
 
             {
                 header: 'state',
@@ -928,7 +869,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
                     );
                 },
             },
-                {
+            {
                 header: 'start_time',
                 accessorKey: 'start_time',
                 cell: (props) => {
@@ -995,21 +936,7 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
 
         ];
     }
-    // "social_media_type_id": "1",
-    // "name": "Jaspreet",
-    // "email": "jas@yopmail.com",
-    // "gender": "Female",
-    // "location": "chandigarh",
-    // "updated_at": "2024-07-09T10:05:52.000Z",
-    // "profile_url": "https://dummy.com/372819389498306",
-    // "followers_count": "15",
-    // "following_count": "5",
-    // "posts_count": "3",
-    // "likes_count": "45",
-    // "friends_count": "2",
-    // "description": "fgdfg",
-    // "favourites_count": "12",
-    // "follow_request_sent": "23",
+ 
     if (selected == 'Social') {
         columns =
             [
@@ -1017,9 +944,9 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
                     header: 'ID',
                     accessorKey: 'id',
                     cell: (props) => {
-    
+
                         const row = props.row.original;
-    
+
                         return <IdColumn row={row} />
                     },
                 },
@@ -1177,24 +1104,15 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
             ]
 
     }
-   
-    // const data = useSelector((state) => state.crmCustomerDetails?.data.poolList?.data)
-
-
-    // const listJoinedORCreated = useSelector(
-    //     (state) => state.crmUsers?.data.filterData.filterType
-    // )
 
 
     const loading = useSelector((state) => state.crmCustomerDetailss?.data.loading2)
 
-    const { pageNumber, pageSize,  userId, search } = useSelector(
+    const { pageNumber, pageSize, userId, search } = useSelector(
         (state) => state.crmCustomerDetailss?.data.tableData
     )
 
-    const { filter_type, paymentType } = useSelector(
-        (state) => state.crmCustomerDetailss.data.filterHistory
-    )
+    
     console.log(pageNumber, pageSize, search, total, selected, 'set useeffedt')
 
     const tableData = useMemo(
@@ -1207,33 +1125,28 @@ const PaymentHistory = ({ poolsData = {}, selected = 'B2b' }) => {
         newTableData.pageNumber = page
         dispatch(setTableData(newTableData))
         console.log(newTableData, 'newTableData')
-        // if (selected == 'B2b' ) {
-        //     dispatch(getActivePoolList({ pageNumber: page, pageSize, search, userId: id , category_id:1}))
-
-           
-        // }
-        // if (selected == 'Featured') {
-        //     dispatch(getFeaturedPoolList({ pageNumber: page, pageSize, search, userId: id }))
-
-        // }
-        // if (selected == 'Active') {
-        //     dispatch(getActivePoolList({ pageNumber: page, pageSize, search, userId: id , category_id:2}))
+        if (selected == 'B2b') {
+            dispatch(getActivePoolList({ pageNumber: page, pageSize, search, userId: id, category_id: 1 }))
 
 
-        // }
-        // if (selected == 'Accomplishment') {
+        }
+        if (selected == 'Finance') {
+            dispatch(getActivePoolList({ pageNumber: page, pageSize, search, userId: id, category_id: 2 }))
+        }
+        if (selected == 'Location') {
+            dispatch(getActivePoolList({ pageNumber: page, pageSize, search, userId: id, category_id: 3 }))
+        }
+        if (selected == 'Activity') {
+            dispatch(getActivePoolList({ pageNumber: page, pageSize, search, userId: id, category_id: 4 }))
 
-        //     dispatch(getAccomplishList({ pageNumber: page, pageSize, userId: id }))
-        // }
-        // if (selected == 'History') {
-        //     dispatch(getHistoryList({ pageNumber, pageSize, userId: id, filter_type: filter_type }))
-        // }
-        // if (selected == 'Payment') {
-        //     dispatch(getPaymentPoolList({ pageNumber: page, pageSize, userId: id, search: '', filterType: 1, paymentType }))
-        // }
-        // if (selected == 'Victory') {
-        //     dispatch(getPoolStats({ id: id }))
-        // }
+
+        }
+        if (selected == 'Social') {
+            dispatch(getActivePoolList({ pageNumber: page, pageSize, search, userId: id, category_id: 5 }))
+
+
+        }
+    
 
     }
 

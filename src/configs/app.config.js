@@ -3,7 +3,7 @@ const appConfig = {
    
     apiPrefix: 'http://159.223.192.153/apis/admin/auth/',
     // apiPrefix: 'https://portalapi.kingpool.app/api/',
-    authenticatedEntryPath: '/app/project/dashboard',
+    authenticatedEntryPath: '/app/dashboard',
     unAuthenticatedEntryPath: '/sign-in',
     tourPath: '/app/account/kyc-form',
     locale: 'en',

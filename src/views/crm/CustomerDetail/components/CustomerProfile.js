@@ -14,6 +14,7 @@ import { deleteCustomer } from '../store/dataSlice'
 import { openEditCustomerDetailDialog } from '../store/stateSlice'
 import EditCustomerProfile from './EditCustomerProfile'
 import dayjs from 'dayjs'
+import { generateImage } from 'components/template/UserDropdown'
 
 const CustomerInfoField = ({ title, value }) => {
     return (
@@ -96,23 +97,26 @@ const CustomerProfile = ({ data = {}, total={} }) => {
             <div className="flex flex-col xl:justify-between  relative h-full 2xl:min-w-[400px] mx-auto ml-16 ">
                 <div className="flex items-center justify-between ">
                     <div className="flex items-center gap-4">
-                        <Avatar size={90} shape="circle" src={data.profile_pic ?data.profile_pic:''} />
+                        <Avatar size={90} shape="circle" 
+                         src={data.profile_pic?  data.profile_pic : generateImage(data.full_name ?data.full_name :''   )} 
+/>
                         <div>
                             <h4 className="font-bold">{data.full_name}</h4>
                             <CustomerInfoField value={data.email} />
-                            {data.website_url ? <CustomerInfoField
-
-                                value={total.total}
-                            /> : <></>}
+                      <CustomerInfoField
+                                value={data.gender}
+                            /> 
+               <CustomerInfoField
+                      
+                      value=
+                      {data.phone_no}
+                  />
+                  </div>
+                
+                    <div>
                         </div>
                         
-                    </div>
-                                        {/* <CustomerInfoField
-                        title="Date of birth"
-                        value=
-                        {total.total}
-                    /> */}
-                    <div>
+                 
 
 
                         {/* <CustomerInfoField title="Plan Name" value={data.data?.user_details?.planName} /> */}
@@ -128,8 +132,12 @@ const CustomerProfile = ({ data = {}, total={} }) => {
                     {/* <CustomerInfoField title="Name" value={data.data.user_details?.firstname} /> */}
 
                 </div>
-                <div className="mt-4 flex flex-col xl:flex-row gap-2">
-                Total records : {total.total}
+                <div className="mt-2 flex flex-col xl:flex-row gap-2">
+           
+
+                <h6 > Total records :<span className="font-bold"></span> {total.total}</h6>
+
+               
                 {/* <CustomerInfoField
                         title="Total records"
                         value= {total.total}

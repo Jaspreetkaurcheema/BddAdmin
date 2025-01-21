@@ -80,19 +80,19 @@ const CustomerStatistic = ({ setSelectedCard, selected }) => {
         (state) => state.crmUsers.data.filterData
     )
 
-    useEffect(() => {
-        if (selected?.key == 'Active') {
-            // dispatch(setTableData({ pageNumber: 1, pageSize: 25, search: '', userType: 1 }))
-            dispatch(setFilterData({ filterType: 1 }))
-            // dispatch(getCustomers({ pageNumber, pageSize, usertype: 1, search, filterType: 1 }))
-        }
-        if (selected?.key == 'All') {
-            // dispatch(setTableData({ pageNumber: 1, pageSize: 25, search: '', userType: 1 }))
-            dispatch(setFilterData({ filterType: 0 }))
-            // dispatch(getCustomers({ pageNumber, pageSize, usertype: 1, search, filterType: 0 }))
-        }
+    // useEffect(() => {
+    //     if (selected?.key == 'Active') {
+    //         // dispatch(setTableData({ pageNumber: 1, pageSize: 25, search: '', userType: 1 }))
+    //         dispatch(setFilterData({ filterType: 1 }))
+    //         // dispatch(getCustomers({ pageNumber, pageSize, usertype: 1, search, filterType: 1 }))
+    //     }
+    //     if (selected?.key == 'All') {
+    //         // dispatch(setTableData({ pageNumber: 1, pageSize: 25, search: '', userType: 1 }))
+    //         dispatch(setFilterData({ filterType: 0 }))
+    //         // dispatch(getCustomers({ pageNumber, pageSize, usertype: 1, search, filterType: 0 }))
+    //     }
         
-    }, [selected?.key,filterType])
+    // }, [selected?.key,filterType])
 
     // useEffect(()=>{
     //     setPageNo(pageNumber)

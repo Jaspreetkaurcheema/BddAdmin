@@ -34,7 +34,15 @@ const ActionColumn = ({ row }) => {
         dispatch(setDrawerOpen())
         dispatch(setSelectedCustomer(row))
     }
+    const tableData = useSelector(
+        (state) => state.crmUsers.data.tableData
+    )
     const onView = useCallback(() => {
+       
+        const newTableData = cloneDeep(tableData)
+        newTableData.pageNumber = 1
+        newTableData.search = ''
+        dispatch(setTableData(newTableData))
         navigate(`/app/crm/customer-details?id=${row.id}`)
     }, [navigate, row])
       return (
@@ -84,6 +92,7 @@ const NameColumn = ({ row, style }) => {
                     className={`hover:${textTheme} ml-2 rtl:mr-2 font-semibold`}
                     to={`/app/crm/customer-details?id=${row.id}`}
                 >
+                    
                     {row.full_name}
                 </Link>
                 <div className='font-semibold'><a href="mailto:this.guy@gmail.com?subject=Test">{row.email}</a></div>
@@ -186,7 +195,7 @@ const columns = [
 const Customers = () => {
     const dispatch = useDispatch()
     const Alldata = useSelector((state) => state.crmUsers.data.customerList?.users)
-
+    const [isFirstEffectDone, setIsFirstEffectDone] = React.useState(false);
     const total = useSelector((state) => state.crmUsers.data.customerList?.total_rows_count)
     const data = useSelector((state) => state.crmUsers.data.customerList?.users) || null
     const loading = useSelector((state) => state.crmUsers.data.loading)
@@ -202,14 +211,25 @@ const Customers = () => {
         (state) => state.crmUsers.data.tableData
     )
 
+  
 
     const fetchData = useCallback(() => {
         dispatch(getCustomers({ pageNumber, pageSize, search, filterType }))
     }, [pageNumber, pageSize, search, filterType, dispatch])
 
+
+    // First useEffect: Dispatches the getCustomers action
     useEffect(() => {
-        fetchData()
-    }, [fetchData, pageNumber, pageSize, filterType])
+        dispatch(setTableData({ pageNumber: 1, pageSize: 10, search: ""}));
+        setIsFirstEffectDone(true); // Set to true after dispatch completes
+    }, [dispatch]);
+
+    // Second useEffect: Fetch data only after the first effect completes
+    useEffect(() => {
+        if (isFirstEffectDone) {
+            fetchData();
+        }
+    }, [isFirstEffectDone, fetchData, pageNumber, pageSize, filterType]);
 
     const tableData = useMemo(
         () => ({ pageNumber, pageSize, search, filterType }),

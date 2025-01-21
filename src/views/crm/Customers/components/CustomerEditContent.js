@@ -62,7 +62,7 @@ const CustomerEditContent = forwardRef((_, ref) => {
             }
             return elm
         })
-console.log(editedCustomer,'editedCustomer')
+           console.log(editedCustomer,'editedCustomer')
         if (!isEmpty(editedCustomer)) {
         
             dispatch(putCustomer(editedCustomer))

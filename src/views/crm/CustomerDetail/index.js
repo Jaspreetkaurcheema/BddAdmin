@@ -41,49 +41,17 @@ const CustomerDetail = () => {
     // const [selectedData, setSelectedData] = useState({})
     const query = useQuery()
 
-    const poolList = useSelector(
-        (state) => state.crmCustomerDetailss.data.poolList
-    )
+ 
     const activePoolList = useSelector(
         (state) => state.crmCustomerDetailss.data.activeList
     )
-    const FeaturedList = useSelector(
-        (state) => state.crmCustomerDetailss.data.featurePoolList
-    )
-    const AccomplishList = useSelector(
-        (state) => state.crmCustomerDetailss.data.AccomplishList
-    )
-    const HistoryList = useSelector(
-        (state) => state.crmCustomerDetailss.data.historyList
-    )
-    const PaymentList = useSelector(
-        (state) => state.crmCustomerDetailss.data.
-        paymentList
-        
-    )
-    const EntriesList = useSelector(
-        (state) => state.crmCustomerDetailss.data.
-        entriesList
-        
-    )
-    const poolStats = useSelector(
-        (state) => state.crmCustomerDetailss.data.
-        poolStats
-        
-    )
+
+  
     const loading = useSelector(
         (state) => state.crmCustomerDetailss.data.loading2
     )
 
-    const loadings = useSelector(
-        (state) => state.crmCustomerDetailss.data.loading1
-    )
-    const { filter_type ,paymentType} = useSelector(
-        (state) => state.crmCustomerDetailss.data.filterHistory
-    )
-
-
-    console.log(poolList, 'hfghgjhgjguju')
+    console.log(activePoolList, 'hfghgjhgjguju')
 
 
     const id = query.get('id')
@@ -95,9 +63,9 @@ const CustomerDetail = () => {
     useEffect(() => {
         fetchData()
 
-    }, [selected,filter_type,paymentType])
+    }, [selected])
 
-    const { pageNumber, pageSize, isJoined, userId, search } = useSelector(
+    const { pageNumber, pageSize, userId, search } = useSelector(
         (state) => state.crmCustomerDetailss?.data.tableData
     )
  
@@ -106,33 +74,33 @@ const CustomerDetail = () => {
     const fetchData = () => {
 
         if (selected.key == 'B2b') {
-            dispatch(getActivePoolList({ pageNumber, pageSize, search, userId: id , category_id:1}))
-             dispatch(setTableData({ pageNumber, pageSize, search, userId: id , userId: id , category_id: 1 }))
+            dispatch(getActivePoolList({ pageNumber:1, pageSize, search, userId: id , category_id:1}))
+             dispatch(setTableData({ pageNumber:1, pageSize, search, userId: id , userId: id , category_id: 1 }))
 
             // dispatch(setTableData({ pageNumber, pageSize, isJoined: true, search: '', userId: id }))
 
         }
         if (selected.key == 'Finance') {
-            dispatch(getActivePoolList({ pageNumber, pageSize, search, userId: id , category_id:2}))
-             dispatch(setTableData({ pageNumber, pageSize, search, userId: id , userId: id , category_id: 2 }))
+            dispatch(getActivePoolList({ pageNumber:1, pageSize, search, userId: id , category_id:2}))
+             dispatch(setTableData({ pageNumber:1, pageSize, search, userId: id , userId: id , category_id: 2 }))
             // dispatch(setTableData({ pageNumber, pageSize, isJoined: false, search: '', userId: id }))
 
         }
         if (selected.key == 'Location') {
-            dispatch(getActivePoolList({ pageNumber, pageSize, search, userId: id , category_id:3}))
-             dispatch(setTableData({ pageNumber, pageSize, search, userId: id , userId: id , category_id: 3 }))
+            dispatch(getActivePoolList({ pageNumber:1, pageSize, search, userId: id , category_id:3}))
+             dispatch(setTableData({ pageNumber:1, pageSize, search, userId: id , userId: id , category_id: 3 }))
             // dispatch(setTableData({ pageNumber: 1, pageSize, search: '', userId: id }))
 
         }
         if (selected.key == 'Activity') {
-            dispatch(getActivePoolList({ pageNumber, pageSize, search, userId: id , category_id:4}))
-             dispatch(setTableData({ pageNumber, pageSize, search, userId: id , userId: id , category_id: 4 }))
+            dispatch(getActivePoolList({ pageNumber:1, pageSize, search, userId: id , category_id:4}))
+             dispatch(setTableData({ pageNumber:1, pageSize, search, userId: id , userId: id , category_id: 4 }))
             // dispatch(setTableData({ pageNumber: 1, pageSize, search: '', userId: id }))
 
         }
         if (selected.key == 'Social') {
-            dispatch(getActivePoolList({ pageNumber, pageSize, search, userId: id , category_id:5}))
-             dispatch(setTableData({ pageNumber, pageSize, search, userId: id , userId: id , category_id: 5 }))
+            dispatch(getActivePoolList({ pageNumber:1, pageSize, search, userId: id , category_id:5}))
+             dispatch(setTableData({ pageNumber:1, pageSize, search, userId: id , userId: id , category_id: 5 }))
             // dispatch(setTableData({ pageNumber: 1, pageSize, search: '', userId: id }))
 
         }
@@ -160,20 +128,21 @@ const CustomerDetail = () => {
     }
 
     const currentSelectedList = (selected) => {
-        if (selected === 'Created' || selected === 'Joined') return poolList
-        if (selected === 'Featured') return FeaturedList
-        if(selected === 'History') {
-            return HistoryList;
-        }
-        if (selected === 'Accomplishment') return AccomplishList
-        if (selected === 'Entries') return EntriesList
-        if (selected === 'Payment') {
-            return PaymentList;
-        }
-        if (selected === 'Victory') {
-            return poolStats;
-        }
-        else return activePoolList
+        // if (selected === 'Created' || selected === 'Joined') return poolList
+        // if (selected === 'Featured') return FeaturedList
+        // if(selected === 'History') {
+        //     return HistoryList;
+        // }
+        // if (selected === 'Accomplishment') return AccomplishList
+        // if (selected === 'Entries') return EntriesList
+        // if (selected === 'Payment') {
+        //     return PaymentList;
+        // }
+        // if (selected === 'Victory') {
+        //     return poolStats;
+        // }
+        // else 
+        return activePoolList
     }
 
    console.log(loading,'fgfgfgfg')
